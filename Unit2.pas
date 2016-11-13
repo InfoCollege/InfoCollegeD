@@ -11,8 +11,6 @@ type
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
     MonthCalendar1: TMonthCalendar;
     MainMenu1: TMainMenu;
     N1: TMenuItem;
@@ -31,6 +29,9 @@ type
     N14: TMenuItem;
     N15: TMenuItem;
     N16: TMenuItem;
+    procedure N7Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure N10Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,7 +42,25 @@ var
   Form2: TForm2;
 
 implementation
-
+    uses unit1,unit3, Unit4;
 {$R *.dfm}
+
+procedure TForm2.N7Click(Sender: TObject);
+begin
+Form2.Hide;
+Form3.show;
+end;
+
+procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Form2.Hide;
+Form1.Show;
+end;
+
+procedure TForm2.N10Click(Sender: TObject);
+begin
+Form2.Hide;
+Form4.show;
+end;
 
 end.

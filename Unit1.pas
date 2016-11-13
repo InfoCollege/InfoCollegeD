@@ -50,6 +50,7 @@ if ADOQuery1.FieldCount = 1 then
 begin
 Form1.Hide;
 Form2.show;
+Form2.Label2.Caption:=Form1.Edit1.Text;
 end
 else
 showmessage('Ошибка №1.Обнаруженая неправильная пара логин/пароль');
