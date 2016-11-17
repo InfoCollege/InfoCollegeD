@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.jpeg,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, Data.DB, Data.Win.ADODB;
 
 type
   TForm5 = class(TForm)
@@ -54,7 +54,9 @@ type
     Edit16: TEdit;
     Button2: TButton;
     Button1: TButton;
+    ADOQuery1: TADOQuery;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,6 +79,18 @@ pred:=strtoint(Edit10.Text)+strtoint(Edit11.Text)+strtoint(Edit12.Text);
  sr:=(5*strtoint(Edit10.Text))+(4*strtoint(Edit11.Text))+(3*strtoint(Edit12.Text));
  sb:=sr/pred;
  Edit13.Text:=FloatToStr(sb);
+end;
+
+procedure TForm5.Button2Click(Sender: TObject);
+begin
+ADOQuery1.Close;
+ADOQuery1.SQL.Clear;
+ADOQuery1.SQL.Add('INSERT INTO ПК(Фамилия,Имя,Отчество,НаименованиеОУ,Окончил,Паспорт,Датавыдачи,Выдан,Код,[Средний балл],Специальность,Телефон,[Телефон(2)],Примечание)');
+ADOQuery1.SQL.Add('VALUES('''+Edit1.Text+''','''+Edit2.Text+''','''+Edit3.Text+''','''+Edit4.Text+''','''+Edit5.Text+''','''+Edit6.Text+''','''+Edit7.Text+''','''+Edit8.Text+''','''+Edit9.Text+''','''+Edit13.Text+'''');
+ADOQuery1.SQL.Add(','''+Listbox1.Items[ListBox1.ItemIndex]+''','''+Edit14.Text+''','''+Edit15.Text+''','''+Edit16.Text+''');');
+//showmessage(ADOQuery1.SQL.Text);
+ADOQuery1.ExecSQL;
+showmessage('Абитуриент внесен в реестр');
 end;
 
 end.
