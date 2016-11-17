@@ -29,9 +29,14 @@ type
     N14: TMenuItem;
     N15: TMenuItem;
     N16: TMenuItem;
+    N17: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
     procedure N7Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure N10Click(Sender: TObject);
+    procedure N17Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +47,7 @@ var
   Form2: TForm2;
 
 implementation
-    uses unit1,unit3, Unit4;
+    uses unit1,unit3, Unit4, Unit5;
 {$R *.dfm}
 
 procedure TForm2.N7Click(Sender: TObject);
@@ -61,6 +66,12 @@ procedure TForm2.N10Click(Sender: TObject);
 begin
 Form2.Hide;
 Form4.show;
+end;
+
+procedure TForm2.N17Click(Sender: TObject);
+begin
+Form2.Hide;
+Form5.show;
 end;
 
 end.
