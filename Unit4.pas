@@ -31,6 +31,7 @@ type
     DBGrid1: TDBGrid;
     ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
+    Label11: TLabel;
     procedure ListBox1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
