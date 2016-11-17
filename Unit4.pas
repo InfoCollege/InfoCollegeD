@@ -33,6 +33,7 @@ type
     DataSource1: TDataSource;
     procedure ListBox1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -44,11 +45,17 @@ var
 
 implementation
 
-uses Unit1;
+uses Unit1,unit2;
 
 {$R *.dfm}
 
 
+
+procedure TForm4.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Form4.Hide;
+Form2.Show;
+end;
 
 procedure TForm4.ListBox1Click(Sender: TObject);
 begin
@@ -68,14 +75,21 @@ end;
 
 procedure TForm4.Button2Click(Sender: TObject);
 begin
+if Form2.Label2.Caption='director' then
+begin
 Form1.ADOQuery1.Close;
 Form1.ADOQuery1.SQL.Clear;
-Form1.ADOQuery1.SQL.Add('INSERT INTO Дипломы');
-Form1.ADOQuery1.SQL.Add('VALUES ('+Edit1.text+','+Edit2.Text+','+Edit3.text+',');
-Form1.ADOQuery1.SQL.Add(''+Edit4.Text+','+Edit5.Text+','+Edit6.Text+'');
-Form1.ADOQuery1.SQL.Add(','+Listbox1.Items[ListBox1.ItemIndex]+','+Edit7.text+',');
-//Form1.ADOQuery1.SQL.Add(''+DBGrid1.DataSource.DataSet.Fields.Fields[0].Value+''');');
-showmessage(Form1.ADOQuery1.SQL.Text);
+Form1.ADOQuery1.SQL.Add('INSERT INTO Дипломы([Серия диплома],[Номер диплома],[Дата выдачи],Фамилия,Имя,Отчество,Специальность,Квалификация,Номер_приказа)');
+Form1.ADOQuery1.SQL.Add('VALUES ('+Edit1.text+','+Edit2.Text+','''+Edit3.text+''',');
+Form1.ADOQuery1.SQL.Add(''''+Edit4.Text+''','''+Edit5.Text+''','''+Edit6.Text+'''');
+Form1.ADOQuery1.SQL.Add(','''+Listbox1.Items[ListBox1.ItemIndex]+''','''+Edit7.text+''',');
+Form1.ADOQuery1.SQL.Add(''''+DBGrid1.DataSource.DataSet.Fields.Fields[0].AsString+''');');
+//showmessage(Form1.ADOQuery1.SQL.Text);
+Form1.ADOQuery1.ExecSQL;
+showmessage('Диплом успешно зарегистрирован!');
+end
+else
+showmessage('Ошибка №2.Недостаточно прав доступа!');
 end;
 
 end.

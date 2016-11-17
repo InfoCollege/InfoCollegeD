@@ -4,11 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, jpeg, ExtCtrls;
+  Dialogs, jpeg, ExtCtrls, Vcl.StdCtrls;
 
 type
   TForm3 = class(TForm)
     Image1: TImage;
+    Label9: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
