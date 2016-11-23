@@ -38,9 +38,10 @@ begin
 ADOQuery1.Close;
 ADOQUery1.SQL.Clear;
 ADOQuery1.SQL.Add('SELECT [Средний балл],Фамилия,Имя,Отчество,Специальность FROM ПК ');
-ADOQuery1.SQL.Add('WHERE Специальность='''+Listbox1.Items[ListBox1.ItemIndex]+'''');
+ADOQuery1.SQL.Add('WHERE Специальность=:P1');
 ADOQuery1.SQL.Add('ORDER BY [Средний балл] DESC;');
-showmessage(ADOQuery1.SQL.Text);
+ADOQuery1.Parameters.ParamByName('P1').Value:=Listbox1.Items[ListBox1.ItemIndex];
+//showmessage(ADOQuery1.SQL.Text);
 ADOQuery1.Open;
 end;
 
