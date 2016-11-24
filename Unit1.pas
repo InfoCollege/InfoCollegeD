@@ -20,6 +20,7 @@ type
     ADOConnection1: TADOConnection;
     ADOQuery1: TADOQuery;
     Label7: TLabel;
+    DataSource1: TDataSource;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -41,16 +42,18 @@ begin
 ADOQuery1.Close;
 ADOQuery1.SQL.Clear;
 ADOQuery1.SQL.Add('SELECT *');
-ADOQuery1.SQL.Add('FROM Сотрудники');
-ADOQuery1.SQL.Add('WHERE Логин='''+Edit1.Text+'''');
-ADOQuery1.SQL.Add('AND Пароль='''+Edit2.Text+''';');
+ADOQuery1.SQL.Add('FROM Сотрудники INNER JOIN Должности ON Сотрудники.ИД_должности=Должности.ИД_должности');
+ADOQuery1.SQL.Add('WHERE Логин=:P1');
+ADOQuery1.SQL.Add('AND Пароль=:P2;');
+ADOQuery1.Parameters.ParamByName('P1').Value:=Edit1.Text;
+ADOQuery1.Parameters.ParamByName('P2').Value:=Edit2.Text;
 ADOQuery1.Open;
 //showmessage(ADOQuery1.SQL.text);
 if ADOQuery1.RecordCount = 1 then
 begin
 Form1.Hide;
 Form2.show;
-Form2.Label2.Caption:=Form1.Edit1.Text;
+Form2.Label2.Caption:=DataSource1.DataSet.FindField('Сокр_имя').AsString;
 end
 else
 showmessage('Ошибка №1.Обнаруженая неправильная пара логин/пароль');
