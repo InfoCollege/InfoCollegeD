@@ -41,6 +41,7 @@ type
     procedure N18Click(Sender: TObject);
     procedure N19Click(Sender: TObject);
     procedure N20Click(Sender: TObject);
+    procedure N14Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,7 +52,7 @@ var
   Form2: TForm2;
 
 implementation
-    uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6;
+    uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9;
 {$R *.dfm}
 
 procedure TForm2.N7Click(Sender: TObject);
@@ -70,6 +71,12 @@ procedure TForm2.N10Click(Sender: TObject);
 begin
 Form2.Hide;
 Form4.show;
+end;
+
+procedure TForm2.N14Click(Sender: TObject);
+begin
+Form2.hide;
+Form9.show;
 end;
 
 procedure TForm2.N17Click(Sender: TObject);

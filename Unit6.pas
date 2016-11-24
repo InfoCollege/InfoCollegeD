@@ -19,6 +19,7 @@ type
     DataSource1: TDataSource;
     Button3: TButton;
     Button1: TButton;
+    Label11: TLabel;
     procedure FSChange(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
