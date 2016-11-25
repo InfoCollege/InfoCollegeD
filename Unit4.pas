@@ -80,7 +80,7 @@ if Form2.Label2.Caption='director'
 then
   if  (SD.Text ='') or (ND.Text='') or (DV.Text ='') or (Fam.Text='') or (Imya.Text='') or (Otch.Text='') or (Kval.Text='')
   then
-  showmessage('Обязательные поля не заполнены')
+  showmessage('Ошибка №3.Обязательные поля не заполнены')
   else
   begin
     Form1.ADOQuery1.Close;

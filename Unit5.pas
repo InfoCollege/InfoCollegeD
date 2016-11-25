@@ -78,11 +78,16 @@ implementation
 
 procedure TForm5.Button1Click(Sender: TObject);
 begin
-pred:=strtoint(Edit10.Text)+strtoint(Edit11.Text)+strtoint(Edit12.Text);
+if (Edit10.Text='') OR (Edit11.Text='') OR (Edit12.Text='') then
+ showmessage('Ошибка №3. Обязательные поля не заполенны!')
+ else
+ begin
+ pred:=strtoint(Edit10.Text)+strtoint(Edit11.Text)+strtoint(Edit12.Text);
  sr:=(5*strtoint(Edit10.Text))+(4*strtoint(Edit11.Text))+(3*strtoint(Edit12.Text));
  sb:=sr/pred;
  Edit13.Text:=FloatToStr(sb);
-end;
+ end
+ end;
 
 procedure TForm5.Button2Click(Sender: TObject);
 begin
