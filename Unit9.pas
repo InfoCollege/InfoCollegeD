@@ -82,7 +82,7 @@ num_columns:=0;
 
 try
 wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
- wdRng.InsertAfter('ФГБОУ ВО «МГУТУ им.К.Г.Разумовского(ПКУ)»');
+wdRng.InsertAfter('ФГБОУ ВО «МГУТУ им.К.Г.Разумовского(ПКУ)»');
 wdRng.InsertAfter(#13#10);
 wdRng.InsertAfter('Университетский колледж информационных технологий');
 wdRng.InsertAfter(#13#10);
@@ -92,30 +92,40 @@ wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
 wdRng.Font.Name := 'Times New Roman';
 wdRng.Font.Bold := True;
 wdRng.Font.Size := 14;
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('ПРИКАЗ');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('«____»________ _______ г.                                          №______________');
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-wdRng.InsertAfter(#13#10);
-wdRng.Font.Bold := True;
-wdRng.Font.Size := 18;
+wdRng.Start := wdRng.End;
+wdRng.ParagraphFormat.Reset;
+wdRng.Font.Reset;
 finally
 end;
 try
 wdRng.Start := wdRng.End;
-wdRng.InsertAfter('Утверждение нагрузки преподавателей');
+wdRng.InsertAfter(#13#10);
+wdRng.InsertAfter('ПРИКАЗ');
+wdRng.InsertAfter(#13#10);
+wdRng.InsertAfter('«____»________ _______ г.                        №______________');
+wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
+wdRng.InsertAfter(#13#10);
+wdRng.Font.Bold := True;
+wdRng.Font.Size := 18;
+wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+    wdRng.Font.Reset;
+finally
+end;
+try
+wdRng.Start := wdRng.End;
+wdRng.InsertAfter('«Утверждение нагрузки преподавателей»');
+wdRng.InsertAfter(#13#10);
+wdRng.InsertAfter(#13#10);
 wdRng.InsertAfter(#13#10);
 wdRng.Font.Name := 'Times New Roman';
 wdRng.Font.Bold := False;
-wdRng.Font.Size := 14;
+wdRng.Font.Size := 12;
 wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-wdRng.Start := wdRng.End;
 wdRng.InsertAfter('В связи с началом нового учебного года.');
 wdRng.Font.Bold := False;
 wdRng.Font.Size := 14;
 wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-wdRng.Start := wdRng.End;
 wdRng.InsertAfter(#13#10);
 wdRng.InsertAfter('ПРИКАЗЫВАЮ:');
 wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
@@ -123,19 +133,21 @@ wdRng.InsertAfter(#13#10);
 wdRng.Font.Name := 'Times New Roman';
 wdRng.Font.Bold := True;
 wdRng.Font.Size := 18;
-wdRng.Start := wdRng.End;
 wdRng.InsertAfter('1.Установить следующую педагогическую нагрузку с 01.09.______ года.');
 wdRng.InsertAfter(#13#10);
 wdRng.InsertAfter(#13#10);
 wdRng.Font.Name := 'Times New Roman';
 wdRng.Font.Bold := True;
 wdRng.Font.Size := 14;
+wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+    wdRng.Font.Reset;
 finally
 end;
-try
-  if not ADOQuery1.Active then ADOQuery1.Open;
-  begin
-     wdRng.Start := wdRng.End;
+  try
+    if not ADOQuery1.Active then ADOQuery1.Open;
+    begin
+    wdRng.InsertAfter(#13#10);
     //Добавляем таблицу MS Word. Пока создаём таблицу с двумя строками.
     wdTable := wdDoc.Tables.Add(wdRng.Characters.Last, 2, ADOQuery1.Fields.Count);
     //Параметры линий таблицы.
@@ -148,13 +160,13 @@ try
     //Оформление шапки.
     wdRng := wdTable.Rows.Item(1).Range; //Диапазон первой строки.
     wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-    wdRng.Font.Size := 10;
+    wdRng.Font.Size := 14;
     wdRng.Font.Bold := True;
     //Оформление первой строки данных - это вторая строка в таблице.
     //При добавлении следующих строк, их оформление будет копироваться с этой строки.
     wdRng := wdTable.Rows.Item(2).Range; //Диапазон второй строки.
     wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-    wdRng.Font.Size := 10;
+    wdRng.Font.Size := 14;
     wdRng.Font.Bold := False;
     //Записываем шапку таблицы
     end;
@@ -178,30 +190,19 @@ try
     ADOQuery1.GotoBookMark(Bm);
     ADOQuery1.EnableControls;
 
-finally
-end;
-try
-wdRng := wdDoc.Content;
-   wdRng.InsertAfter(#13#10);
-   wdRng.Font.Name := 'Times New Roman';
-   wdRng.Font.Bold := False;
-  wdRng.Font.Size := 14;
-  wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
+     finally
+  wdRng := wdDoc.Range.Characters.Last;;
+  end;
+  try
   wdRng.InsertAfter(#13#10);
   wdRng.InsertAfter(#13#10);
-  wdRng.InsertAfter(#13#10);
-  wdRng.InsertAfter(#13#10);
-  wdRng.Font.Bold := False;
-  wdRng.Font.Size := 14;
-  wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-  wdRng.Start := wdRng.End;
   wdRng.InsertAfter(#13#10);
   wdRng.InsertAfter('Директор колледжа                              Александров Р.В.');
   wdRng.Font.Bold := true;
   wdRng.Font.Size := 16;
   wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
   wdRng.Start := wdRng.End;
-finally
+  finally
   //Включение перерисовки окна MS Word. В случае, если wdApp.Visible := True.
     wdApp.ScreenUpdating := True;
   end;
@@ -238,6 +239,7 @@ ADOQuery1.SQL.Add('SELECT *');
 ADOQuery1.SQL.Add('FROM Преподаватели');
 ADOQuery1.SQL.Add('ORDER BY Фамилия;');
 ADOQuery1.open;
+DBGrid1.ReadOnly:=false;
 end;
 1:  begin
 ADOQuery1.close;
@@ -246,6 +248,7 @@ ADOQuery1.SQL.Add('SELECT Фамилия,Имя,Отчество,[Годовая нагрузка]');
 ADOQuery1.SQL.Add('FROM Преподаватели');
 ADOQuery1.SQL.Add('ORDER BY Фамилия;');
 ADOQuery1.open;
+DBGrid1.ReadOnly:=true;
 end;
 end;
 end;
