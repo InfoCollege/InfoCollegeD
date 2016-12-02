@@ -137,6 +137,26 @@
             <Form>Form9</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Unit10.pas">
+            <Form>Form10</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit11.pas">
+            <Form>Form11</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit12.pas">
+            <Form>Form12</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit13.pas">
+            <Form>Form13</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit14.pas">
+            <Form>Form14</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

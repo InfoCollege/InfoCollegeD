@@ -8,7 +8,6 @@ uses
 
 type
   TForm2 = class(TForm)
-    Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     MonthCalendar1: TMonthCalendar;
@@ -34,6 +33,7 @@ type
     N19: TMenuItem;
     N20: TMenuItem;
     Label3: TLabel;
+    Image1: TImage;
     procedure N7Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure N10Click(Sender: TObject);
@@ -42,6 +42,10 @@ type
     procedure N19Click(Sender: TObject);
     procedure N20Click(Sender: TObject);
     procedure N14Click(Sender: TObject);
+    procedure N13Click(Sender: TObject);
+    procedure N15Click(Sender: TObject);
+    procedure N16Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,13 +56,20 @@ var
   Form2: TForm2;
 
 implementation
-    uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9;
+    uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9, Unit10, Unit11,
+  Unit13, Unit14;
 {$R *.dfm}
 
 procedure TForm2.N7Click(Sender: TObject);
 begin
 Form2.Hide;
 Form3.show;
+end;
+
+procedure TForm2.N9Click(Sender: TObject);
+begin
+Form2.hide;
+Form14.show;
 end;
 
 procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -73,10 +84,28 @@ Form2.Hide;
 Form4.show;
 end;
 
+procedure TForm2.N13Click(Sender: TObject);
+begin
+Form2.hide;
+Form10.show;
+end;
+
 procedure TForm2.N14Click(Sender: TObject);
 begin
 Form2.hide;
 Form9.show;
+end;
+
+procedure TForm2.N15Click(Sender: TObject);
+begin
+Form2.hide;
+Form11.show;
+end;
+
+procedure TForm2.N16Click(Sender: TObject);
+begin
+Form2.hide;
+Form13.show;
 end;
 
 procedure TForm2.N17Click(Sender: TObject);
