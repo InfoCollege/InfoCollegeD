@@ -7,10 +7,10 @@ uses
   Dialogs, Menus, ComCtrls, StdCtrls, jpeg, ExtCtrls;
 
 type
-  TForm2 = class(TForm)
-    Label1: TLabel;
-    Label2: TLabel;
-    MonthCalendar1: TMonthCalendar;
+  TMenuChoice = class(TForm)
+    L_Username: TLabel;
+    username: TLabel;
+    Calendar: TMonthCalendar;
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     N3: TMenuItem;
@@ -32,8 +32,8 @@ type
     N18: TMenuItem;
     N19: TMenuItem;
     N20: TMenuItem;
-    Label3: TLabel;
-    Image1: TImage;
+    L_University: TLabel;
+    Background: TImage;
     procedure N7Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure N10Click(Sender: TObject);
@@ -53,83 +53,83 @@ type
   end;
 
 var
-  Form2: TForm2;
+  MenuChoice: TMenuChoice;
 
 implementation
     uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9, Unit10, Unit11,
   Unit13, Unit14;
 {$R *.dfm}
 
-procedure TForm2.N7Click(Sender: TObject);
+procedure TMenuChoice.N7Click(Sender: TObject);
 begin
-Form2.Hide;
-Form3.show;
+MenuChoice.Hide;
+Information.show;
 end;
 
-procedure TForm2.N9Click(Sender: TObject);
+procedure TMenuChoice.N9Click(Sender: TObject);
 begin
-Form2.hide;
+MenuChoice.hide;
 Form14.show;
 end;
 
-procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TMenuChoice.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form2.Hide;
-Form1.Show;
+MenuChoice.Hide;
+MainForm.Show;
 end;
 
-procedure TForm2.N10Click(Sender: TObject);
+procedure TMenuChoice.N10Click(Sender: TObject);
 begin
-Form2.Hide;
-Form4.show;
+MenuChoice.Hide;
+RegisterDiplomas.show;
 end;
 
-procedure TForm2.N13Click(Sender: TObject);
+procedure TMenuChoice.N13Click(Sender: TObject);
 begin
-Form2.hide;
+MenuChoice.hide;
 Form10.show;
 end;
 
-procedure TForm2.N14Click(Sender: TObject);
+procedure TMenuChoice.N14Click(Sender: TObject);
 begin
-Form2.hide;
+MenuChoice.hide;
 Form9.show;
 end;
 
-procedure TForm2.N15Click(Sender: TObject);
+procedure TMenuChoice.N15Click(Sender: TObject);
 begin
-Form2.hide;
+MenuChoice.hide;
 Form11.show;
 end;
 
-procedure TForm2.N16Click(Sender: TObject);
+procedure TMenuChoice.N16Click(Sender: TObject);
 begin
-Form2.hide;
+MenuChoice.hide;
 Form13.show;
 end;
 
-procedure TForm2.N17Click(Sender: TObject);
+procedure TMenuChoice.N17Click(Sender: TObject);
 begin
-Form2.Hide;
-Form5.show;
+MenuChoice.Hide;
+AdmissionCommittee.show;
 end;
 
-procedure TForm2.N18Click(Sender: TObject);
+procedure TMenuChoice.N18Click(Sender: TObject);
 begin
-Form2.Hide;
-Form7.show;
+MenuChoice.Hide;
+Rating.show;
 end;
 
-procedure TForm2.N19Click(Sender: TObject);
+procedure TMenuChoice.N19Click(Sender: TObject);
 begin
-Form2.Hide;
+MenuChoice.Hide;
 Form8.show;
 end;
 
-procedure TForm2.N20Click(Sender: TObject);
+procedure TMenuChoice.N20Click(Sender: TObject);
 begin
-Form2.hide;
-Form6.show;
+MenuChoice.hide;
+RegisterStudent.show;
 end;
 
 end.

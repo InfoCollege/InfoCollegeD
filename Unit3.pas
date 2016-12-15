@@ -7,14 +7,14 @@ uses
   Dialogs, jpeg, ExtCtrls, Vcl.StdCtrls;
 
 type
-  TForm3 = class(TForm)
-    Image1: TImage;
-    Label9: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+  TInformation = class(TForm)
+    Background: TImage;
+    L_Info3: TLabel;
+    L_NameProgram: TLabel;
+    L_University: TLabel;
+    L_Info1: TLabel;
+    L_Info2: TLabel;
+    L_ProgramVersion: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -23,16 +23,16 @@ type
   end;
 
 var
-  Form3: TForm3;
+  Information: TInformation;
 
 implementation
   uses unit2;
 {$R *.dfm}
 
-procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TInformation.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form3.Hide;
-Form2.show;
+Information.Hide;
+MenuChoice.show;
 end;
 
 end.

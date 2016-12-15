@@ -64,7 +64,7 @@ end;
 procedure TForm13.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 Form13.Hide;
-Form2.show;
+MenuChoice.show;
 end;
 
 end.

@@ -8,24 +8,24 @@ uses
   Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Data.Win.ADODB;
 
 type
-  TForm6 = class(TForm)
-    Image1: TImage;
-    Label9: TLabel;
-    DBGrid1: TDBGrid;
-    Button2: TButton;
-    FS: TEdit;
-    Label1: TLabel;
-    ADOQuery1: TADOQuery;
-    DataSource1: TDataSource;
-    Button3: TButton;
-    Button1: TButton;
-    Label11: TLabel;
-    procedure FSChange(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure DBGrid1Enter(Sender: TObject);
+  TRegisterStudent = class(TForm)
+    BackGround: TImage;
+    L_ModuleName: TLabel;
+    T_RegisterStudent: TDBGrid;
+    AddStudent: TButton;
+    Search: TEdit;
+    L_Search: TLabel;
+    Query_RegisterStudent: TADOQuery;
+    DS_RegisterStudent: TDataSource;
+    Update: TButton;
+    Generate: TButton;
+    L_University: TLabel;
+    procedure SearchChange(Sender: TObject);
+    procedure AddStudentClick(Sender: TObject);
+    procedure UpdateClick(Sender: TObject);
+    procedure T_RegisterStudentEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button1Click(Sender: TObject);
+    procedure GenerateClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,77 +33,77 @@ type
   end;
 
 var
-  Form6: TForm6;
+  RegisterStudent: TRegisterStudent;
 
 implementation
 
 {$R *.dfm}
 
-uses Unit2, Unit8;
+uses Unit2,Unit1, Unit8;
 
 
-procedure TForm6.Button1Click(Sender: TObject);
+procedure TRegisterStudent.GenerateClick(Sender: TObject);
 begin
-Form6.hide;;
+RegisterStudent.hide;;
 Form8.show;
-Form8.Fam.Text:=DBGrid1.DataSource.DataSet.Fields.Fields[1].AsString;
-Form8.Imya.Text:=DBGrid1.DataSource.DataSet.Fields.Fields[2].AsString;
-Form8.Otch.Text:=DBGrid1.DataSource.DataSet.Fields.Fields[3].AsString;
-Form8.Gruppa.Text:=DBGrid1.DataSource.DataSet.Fields.Fields[4].AsString;
+Form8.Fam.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[1].AsString;
+Form8.Imya.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[2].AsString;
+Form8.Otch.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[3].AsString;
+Form8.Gruppa.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[4].AsString;
 
 end;
 
-procedure TForm6.Button2Click(Sender: TObject);
+procedure TRegisterStudent.AddStudentClick(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('INSERT INTO Студенты(Фамилия,Имя,Отчество,ИД_группы)');
-ADOQuery1.SQL.Add('VALUES (NULL,NULL,NULL,0);');
-ADOQuery1.ExecSQL;
-ADOQuery1.Close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
-ADOQuery1.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
-ADOQuery1.SQL.Add('ORDER BY ИД_Студента;');
-ADOQuery1.Open;
+Query_RegisterStudent.Close;
+Query_RegisterStudent.SQL.clear;
+Query_RegisterStudent.SQL.Add('INSERT INTO Студенты(Фамилия,Имя,Отчество,ИД_группы)');
+Query_RegisterStudent.SQL.Add('VALUES (NULL,NULL,NULL,0);');
+Query_RegisterStudent.ExecSQL;
+Query_RegisterStudent.Close;
+Query_RegisterStudent.SQL.clear;
+Query_RegisterStudent.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
+Query_RegisterStudent.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
+Query_RegisterStudent.SQL.Add('ORDER BY ИД_Студента;');
+Query_RegisterStudent.Open;
 end;
 
-procedure TForm6.Button3Click(Sender: TObject);
+procedure TRegisterStudent.UpdateClick(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
-ADOQuery1.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
-ADOQuery1.SQL.Add('ORDER BY ИД_Студента;');
-ADOQuery1.Open;
+Query_RegisterStudent.Close;
+Query_RegisterStudent.SQL.clear;
+Query_RegisterStudent.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
+Query_RegisterStudent.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
+Query_RegisterStudent.SQL.Add('ORDER BY ИД_Студента;');
+Query_RegisterStudent.Open;
 end;
 
 
-procedure TForm6.DBGrid1Enter(Sender: TObject);
+procedure TRegisterStudent.T_RegisterStudentEnter(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
-ADOQuery1.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
-ADOQuery1.SQL.Add('ORDER BY ИД_Студента;');
-ADOQuery1.Open;
+Query_RegisterStudent.Close;
+Query_RegisterStudent.SQL.clear;
+Query_RegisterStudent.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
+Query_RegisterStudent.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
+Query_RegisterStudent.SQL.Add('ORDER BY ИД_Студента;');
+Query_RegisterStudent.Open;
 end;
 
-procedure TForm6.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TRegisterStudent.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form6.Hide;
-Form2.Show;
+RegisterStudent.Hide;
+MenuChoice.Show;
 end;
 
-procedure TForm6.FSChange(Sender: TObject);
+procedure TRegisterStudent.SearchChange(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
-ADOQuery1.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
-ADOQuery1.SQL.Add('WHERE Фамилия LIKE '''+FS.Text+'%'';');
+Query_RegisterStudent.Close;
+Query_RegisterStudent.SQL.clear;
+Query_RegisterStudent.SQL.Add('SELECT ИД_студента AS [Код студента],Фамилия, Имя, Отчество, Студенты.ИД_группы as [Номер группы],Специальность');
+Query_RegisterStudent.SQL.Add('FROM Группа INNER JOIN Студенты ON Группа.ИД_группы=Студенты.ИД_группы');
+Query_RegisterStudent.SQL.Add('WHERE Фамилия LIKE '''+Search.Text+'%'';');
 //showmessage(ADOQuery1.SQL.Text);
-ADOQuery1.Open;
+Query_RegisterStudent.Open;
 end;
 
 end.

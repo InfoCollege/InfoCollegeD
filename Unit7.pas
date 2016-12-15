@@ -8,18 +8,18 @@ uses
   Data.Win.ADODB, Vcl.StdCtrls, Vcl.Imaging.jpeg, Vcl.ExtCtrls;
 
 type
-  TForm7 = class(TForm)
-    Image1: TImage;
-    Label9: TLabel;
-    ListBox1: TListBox;
-    Label7: TLabel;
-    Button2: TButton;
-    Button1: TButton;
-    ADOQuery1: TADOQuery;
-    DataSource1: TDataSource;
-    DBGrid1: TDBGrid;
-    Label3: TLabel;
-    procedure Button2Click(Sender: TObject);
+  TRating = class(TForm)
+    Background: TImage;
+    L_ModuleName: TLabel;
+    Specialty: TListBox;
+    L_Specialty: TLabel;
+    Generate: TButton;
+    Print: TButton;
+    Query_Rating: TADOQuery;
+    DS_Rating: TDataSource;
+    T_Rating: TDBGrid;
+    L_University: TLabel;
+    procedure GenerateClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,22 +27,22 @@ type
   end;
 
 var
-  Form7: TForm7;
+  Rating: TRating;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm7.Button2Click(Sender: TObject);
+procedure TRating.GenerateClick(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQUery1.SQL.Clear;
-ADOQuery1.SQL.Add('SELECT [Средний балл],Фамилия,Имя,Отчество,Специальность FROM ПК ');
-ADOQuery1.SQL.Add('WHERE Специальность=:P1');
-ADOQuery1.SQL.Add('ORDER BY [Средний балл] DESC;');
-ADOQuery1.Parameters.ParamByName('P1').Value:=Listbox1.Items[ListBox1.ItemIndex];
+Query_Rating.Close;
+Query_Rating.SQL.Clear;
+Query_Rating.SQL.Add('SELECT [Средний балл],Фамилия,Имя,Отчество,Специальность FROM ПК ');
+Query_Rating.SQL.Add('WHERE Специальность=:P1');
+Query_Rating.SQL.Add('ORDER BY [Средний балл] DESC;');
+Query_Rating.Parameters.ParamByName('P1').Value:=Specialty.Items[Specialty.ItemIndex];
 //showmessage(ADOQuery1.SQL.Text);
-ADOQuery1.Open;
+Query_Rating.Open;
 end;
 
 end.

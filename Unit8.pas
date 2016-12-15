@@ -15,15 +15,15 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label4: TLabel;
-    Fam: TEdit;
-    Imya: TEdit;
-    Otch: TEdit;
+    Surname: TEdit;
+    Name: TEdit;
+    MiddleName: TEdit;
     Label5: TLabel;
-    Gruppa: TEdit;
+    Group: TEdit;
     Label6: TLabel;
-    God: TEdit;
+    Date: TEdit;
     Label7: TLabel;
-    Treb: TEdit;
+    Destination: TEdit;
     Button2: TButton;
     Label8: TLabel;
     Label10: TLabel;
@@ -178,13 +178,13 @@ wdRng.Font.Size := 15;
 procedure TForm8.Button2Click(Sender: TObject);
 begin
 Form8.hide;
-Form6.show;
+RegisterStudent.show;
 end;
 
 procedure TForm8.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 Form8.Hide;
-Form2.show;
+MenuChoice.show;
 end;
 
 procedure TForm8.RadioButton1Click(Sender: TObject);
@@ -195,8 +195,8 @@ end;
 
 procedure TForm8.RadioButton2Click(Sender: TObject);
 begin
-FIORuk.text:=Form1.DataSource1.DataSet.FindField('Сокр_имя').AsString;
-DolRuk.text:=Form1.DataSource1.DataSet.FindField('Наименование').AsString;
+FIORuk.text:=MainForm.AuthDS1.DataSet.FindField('Сокр_имя').AsString;
+DolRuk.text:=MainForm.AuthDS1.DataSet.FindField('Наименование').AsString;
 end;
 
 
@@ -204,7 +204,7 @@ end;
 procedure TForm8.RadioGroup1Click(Sender: TObject);
 begin
 case RadioGroup1.ItemIndex of
-0: a:=Form6.DBGrid1.DataSource.DataSet.FindField('Специальность').AsString;
+0: a:=RegisterStudent.T_RegisterStudent.DataSource.DataSet.FindField('Специальность').AsString;
 1: a:='';
 end;
 

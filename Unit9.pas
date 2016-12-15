@@ -226,7 +226,7 @@ end;
 procedure TForm9.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 Form9.Hide;
-Form2.show;
+MenuChoice.show;
 end;
 
 procedure TForm9.RadioGroup1Click(Sender: TObject);

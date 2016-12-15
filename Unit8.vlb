@@ -7,17 +7,8 @@ Coordinates=256,278,53,58
 [DolRuk]
 Coordinates=73,210,57,58
 
-[Treb]
-Coordinates=140,210,41,58
-
-[Imya]
-Coordinates=359,10,42,58
-
 [Label6]
 Coordinates=503,210,53,58
-
-[Gruppa]
-Coordinates=323,210,57,58
 
 [Label1]
 Coordinates=195,10,53,58
@@ -43,17 +34,11 @@ Coordinates=615,10,60,58
 [Label7]
 Coordinates=260,210,53,58
 
-[God]
-Coordinates=390,210,40,58
-
 [SaveDialog1]
 Coordinates=360,265,87,36
 
 [Button1]
 Coordinates=411,10,59,58
-
-[Otch]
-Coordinates=204,278,42,58
 
 [Label2]
 Coordinates=319,278,53,58
@@ -61,20 +46,11 @@ Coordinates=319,278,53,58
 [Label9]
 Coordinates=10,210,53,58
 
-[Fam]
-Coordinates=145,10,40,58
-
 [Label5]
 Coordinates=74,278,53,58
 
 [Label4]
 Coordinates=382,278,53,58
-
-[Form6.ADOQuery1]
-Coordinates=10,10,125,190
-
-[Form6.DataSource1]
-Coordinates=221,461,130,36
 
 [Form1.ADOQuery1]
 Coordinates=480,10,125,58
@@ -85,4 +61,28 @@ Coordinates=653,1,130,36
 []
 Coordinates=258,10,91,58
 Visible=True
+
+[Form6.Query_RegisterStudent]
+Coordinates=10,10,125,190
+
+[Form6.DS_RegisterStudent]
+Coordinates=221,461,130,36
+
+[Surname]
+Coordinates=145,10,40,58
+
+[Name]
+Coordinates=359,10,42,58
+
+[MiddleName]
+Coordinates=204,278,42,58
+
+[Group]
+Coordinates=323,210,57,58
+
+[Date]
+Coordinates=390,210,40,58
+
+[Destination]
+Coordinates=140,210,41,58
 

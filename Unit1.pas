@@ -7,21 +7,21 @@ uses
   Dialogs, StdCtrls, jpeg, ExtCtrls, DB, ADODB;
 
 type
-  TForm1 = class(TForm)
-    Image1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label4: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Label5: TLabel;
-    Label6: TLabel;
-    Button1: TButton;
-    ADOConnection1: TADOConnection;
-    ADOQuery1: TADOQuery;
-    Label7: TLabel;
-    DataSource1: TDataSource;
-    procedure Button1Click(Sender: TObject);
+  TMainForm = class(TForm)
+    Background: TImage;
+    ProgramName: TLabel;
+    L_University: TLabel;
+    L_Auth: TLabel;
+    Login: TEdit;
+    Password: TEdit;
+    L_Login: TLabel;
+    L_Pass: TLabel;
+    Auth: TButton;
+    DB: TADOConnection;
+    Query_Auth: TADOQuery;
+    L_Version: TLabel;
+    AuthDS1: TDataSource;
+    procedure AuthClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,7 +29,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MainForm: TMainForm;
 
 implementation
 
@@ -37,23 +37,23 @@ uses Unit2;
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TMainForm.AuthClick(Sender: TObject);
 begin
-ADOQuery1.Close;
-ADOQuery1.SQL.Clear;
-ADOQuery1.SQL.Add('SELECT *');
-ADOQuery1.SQL.Add('FROM Сотрудники INNER JOIN Должности ON Сотрудники.ИД_должности=Должности.ИД_должности');
-ADOQuery1.SQL.Add('WHERE Логин=:P1');
-ADOQuery1.SQL.Add('AND Пароль=:P2;');
-ADOQuery1.Parameters.ParamByName('P1').Value:=Edit1.Text;
-ADOQuery1.Parameters.ParamByName('P2').Value:=Edit2.Text;
-ADOQuery1.Open;
+Query_Auth.Close;
+Query_Auth.SQL.Clear;
+Query_Auth.SQL.Add('SELECT *');
+Query_Auth.SQL.Add('FROM Сотрудники INNER JOIN Должности ON Сотрудники.ИД_должности=Должности.ИД_должности');
+Query_Auth.SQL.Add('WHERE Логин=:P1');
+Query_Auth.SQL.Add('AND Пароль=:P2;');
+Query_Auth.Parameters.ParamByName('P1').Value:=Login.Text;
+Query_Auth.Parameters.ParamByName('P2').Value:=Password.Text;
+Query_Auth.Open;
 //showmessage(ADOQuery1.SQL.text);
-if ADOQuery1.RecordCount = 1 then
+if Query_Auth.RecordCount = 1 then
 begin
-Form1.Hide;
-Form2.show;
-Form2.Label2.Caption:=DataSource1.DataSet.FindField('Сокр_имя').AsString;
+MainForm.Hide;
+MenuChoice.show;
+MenuChoice.username.Caption:=AuthDS1.DataSet.FindField('Сокр_имя').AsString;
 end
 else
 showmessage('Ошибка №1.Обнаруженая неправильная пара логин/пароль');

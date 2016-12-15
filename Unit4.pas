@@ -7,33 +7,34 @@ uses
   Dialogs, StdCtrls, jpeg, ExtCtrls, DBCtrls, DB, ADODB, Grids, DBGrids;
 
 type
-  TForm4 = class(TForm)
-    Button2: TButton;
-    Image1: TImage;
-    Label1: TLabel;
-    SD: TEdit;
-    Label2: TLabel;
-    ND: TEdit;
-    Label3: TLabel;
-    DV: TEdit;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Fam: TEdit;
-    Imya: TEdit;
-    Otch: TEdit;
-    Label7: TLabel;
-    Label8: TLabel;
-    Kval: TEdit;
-    Prof: TListBox;
-    Label9: TLabel;
-    Label10: TLabel;
-    DBGrid1: TDBGrid;
-    ADOQuery1: TADOQuery;
-    DataSource1: TDataSource;
-    Label11: TLabel;
-    procedure ProfClick(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+  TRegisterDiplomas = class(TForm)
+    RegisterDiplom: TButton;
+    Background: TImage;
+    L_Series: TLabel;
+    Series: TEdit;
+    L_number: TLabel;
+    Number: TEdit;
+    L_Date: TLabel;
+    Date: TEdit;
+    L_Surname: TLabel;
+    L_Name: TLabel;
+    L_MiddleName: TLabel;
+    Surname: TEdit;
+    Name: TEdit;
+    MiddleName: TEdit;
+    L_SpecialtyCode: TLabel;
+    L_Specialty: TLabel;
+    Specialty: TEdit;
+    SpecialtyСode: TListBox;
+    L_ModuleName: TLabel;
+    L_TDiplomas: TLabel;
+    T_Diplomas: TDBGrid;
+    Query_Diplomas: TADOQuery;
+    DS_Diplomas: TDataSource;
+    L_University: TLabel;
+    Insert: TADOQuery;
+    procedure SpecialtyСodeClick(Sender: TObject);
+    procedure RegisterDiplomClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -42,7 +43,7 @@ type
   end;
 
 var
-  Form4: TForm4;
+  RegisterDiplomas: TRegisterDiplomas;
 
 implementation
 
@@ -52,46 +53,46 @@ uses Unit1,unit2;
 
 
 
-procedure TForm4.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TRegisterDiplomas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form4.Hide;
-Form2.Show;
+RegisterDiplomas.Hide;
+MenuChoice.Show;
 end;
 
-procedure TForm4.ProfClick(Sender: TObject);
+procedure TRegisterDiplomas.SpecialtyСodeClick(Sender: TObject);
 begin
-if Prof.Selected[0]= true then
-Kval.Text:='Техник по компьютерным системам';
-if Prof.Selected[1]= true then
-Kval.Text:='Техник-программист';
-if Prof.Selected[2]= true then
-Kval.Text:='Техник-программист';
-if Prof.Selected[3]= true then
-Kval.Text:='Техник по защите информации';
-if Prof.Selected[4]= true then
-Kval.Text:='Специалист по земельно-имущественным отношениям';
-if Prof.Selected[5]= true then
-Kval.Text:='Специалист по рекламе';
+if SpecialtyСode.Selected[0]= true then
+Specialty.Text:='Техник по компьютерным системам';
+if SpecialtyСode.Selected[1]= true then
+Specialty.Text:='Техник-программист';
+if SpecialtyСode.Selected[2]= true then
+Specialty.Text:='Техник-программист';
+if SpecialtyСode.Selected[3]= true then
+Specialty.Text:='Техник по защите информации';
+if SpecialtyСode.Selected[4]= true then
+Specialty.Text:='Специалист по земельно-имущественным отношениям';
+if SpecialtyСode.Selected[5]= true then
+Specialty.Text:='Специалист по рекламе';
 end;
 
-procedure TForm4.Button2Click(Sender: TObject);
+procedure TRegisterDiplomas.RegisterDiplomClick(Sender: TObject);
 begin
-if Form2.Label2.Caption='director'
+if MenuChoice.username.Caption='Александров Р.В.'
 then
-  if  (SD.Text ='') or (ND.Text='') or (DV.Text ='') or (Fam.Text='') or (Imya.Text='') or (Otch.Text='') or (Kval.Text='')
+  if  (Series.Text ='') or (Number.Text='') or (Date.Text ='') or (Surname.Text='') or (Name.Text='') or (MiddleName.Text='') or (Specialty.Text='')
   then
   showmessage('Ошибка №3.Обязательные поля не заполнены')
   else
   begin
-    Form1.ADOQuery1.Close;
-    Form1.ADOQuery1.SQL.Clear;
-    Form1.ADOQuery1.SQL.Add('INSERT INTO Дипломы([Серия диплома],[Номер диплома],[Дата выдачи],Фамилия,Имя,Отчество,Специальность,Квалификация,Номер_приказа)');
-    Form1.ADOQuery1.SQL.Add('VALUES ('+SD.text+','+ND.Text+','''+DV.text+''',');
-    Form1.ADOQuery1.SQL.Add(''''+Fam.Text+''','''+Imya.Text+''','''+Otch.Text+'''');
-    Form1.ADOQuery1.SQL.Add(','''+Prof.Items[Prof.ItemIndex]+''','''+Kval.text+''',');
-    Form1.ADOQuery1.SQL.Add(''''+DBGrid1.DataSource.DataSet.Fields.Fields[0].AsString+''');');
-    showmessage(Form1.ADOQuery1.SQL.Text);
-    Form1.ADOQuery1.ExecSQL;
+    RegisterDiplomas.Insert.Close;
+    RegisterDiplomas.Insert.SQL.Clear;
+    RegisterDiplomas.Insert.SQL.Add('INSERT INTO Дипломы([Серия диплома],[Номер диплома],[Дата выдачи],Фамилия,Имя,Отчество,Специальность,Квалификация,Номер_приказа)');
+    RegisterDiplomas.Insert.SQL.Add('VALUES ('+Series.text+','+Number.Text+','''+Date.text+''',');
+    RegisterDiplomas.Insert.SQL.Add(''''+Surname.Text+''','''+Name.Text+''','''+MiddleName.Text+'''');
+    RegisterDiplomas.Insert.SQL.Add(','''+SpecialtyСode.Items[SpecialtyСode.ItemIndex]+''','''+Specialty.text+''',');
+    RegisterDiplomas.Insert.SQL.Add(''''+T_Diplomas.DataSource.DataSet.Fields.Fields[0].AsString+''');');
+    //showmessage(RegisterDiplomas.Insert.SQL.Text);
+    RegisterDiplomas.Insert.ExecSQL;
     showmessage('Диплом успешно зарегистрирован!');
     end
 else
