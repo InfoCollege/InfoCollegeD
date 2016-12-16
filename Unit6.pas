@@ -45,11 +45,11 @@ uses Unit2,Unit1, Unit8;
 procedure TRegisterStudent.GenerateClick(Sender: TObject);
 begin
 RegisterStudent.hide;;
-Form8.show;
-Form8.Fam.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[1].AsString;
-Form8.Imya.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[2].AsString;
-Form8.Otch.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[3].AsString;
-Form8.Gruppa.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[4].AsString;
+MenuGenerate.show;
+MenuGenerate.Surname.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[1].AsString;
+MenuGenerate.Name.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[2].AsString;
+MenuGenerate.Middlename.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[3].AsString;
+MenuGenerate.Group.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[4].AsString;
 
 end;
 

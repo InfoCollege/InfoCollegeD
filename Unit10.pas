@@ -8,18 +8,18 @@ uses
   Vcl.ExtCtrls, Data.DB, Data.Win.ADODB, Vcl.Grids, Vcl.DBGrids;
 
 type
-  TForm10 = class(TForm)
-    Image1: TImage;
-    Label2: TLabel;
-    Label9: TLabel;
-    DBGrid1: TDBGrid;
-    Button1: TButton;
-    Button3: TButton;
-    Teacher: TADOQuery;
-    DataSource1: TDataSource;
-    TeacherDel: TADOQuery;
-    procedure Button1Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+  TTeacher = class(TForm)
+    Background: TImage;
+    L_University: TLabel;
+    L_ModuleName: TLabel;
+    T_Teacher: TDBGrid;
+    AddTeacher: TButton;
+    DeleteTeacher: TButton;
+    Query_Teacher: TADOQuery;
+    DS: TDataSource;
+    Query_DeleteTeacher: TADOQuery;
+    procedure AddTeacherClick(Sender: TObject);
+    procedure DeleteTeacherClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -28,43 +28,43 @@ type
   end;
 
 var
-  Form10: TForm10;
+  Teacher: TTeacher;
 implementation
 
 {$R *.dfm}
 
 uses Unit2;
 
-procedure TForm10.Button1Click(Sender: TObject);
+procedure TTeacher.AddTeacherClick(Sender: TObject);
 begin
-Teacher.close;
-Teacher.SQL.Clear;
-Teacher.SQL.Add('INSERT INTO Преподаватели (Фамилия,Имя,Отчество)');
-Teacher.SQL.Add('VALUES (NULL,NULL,NULL);');
-Teacher.ExecSQL;
-Teacher.close;
-Teacher.SQL.Clear;
-Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество,КК');
-Teacher.SQL.Add('FROM Преподаватели');
-Teacher.SQL.Add('ORDER BY Фамилия');
-Teacher.open;
+Query_Teacher.close;
+Query_Teacher.SQL.Clear;
+Query_Teacher.SQL.Add('INSERT INTO Преподаватели (Фамилия,Имя,Отчество)');
+Query_Teacher.SQL.Add('VALUES (NULL,NULL,NULL);');
+Query_Teacher.ExecSQL;
+Query_Teacher.close;
+Query_Teacher.SQL.Clear;
+Query_Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество,КК');
+Query_Teacher.SQL.Add('FROM Преподаватели');
+Query_Teacher.SQL.Add('ORDER BY Фамилия');
+Query_Teacher.open;
 
 end;
 
-procedure TForm10.Button3Click(Sender: TObject);
+procedure TTeacher.DeleteTeacherClick(Sender: TObject);
 begin
-TeacherDel.close;
-TeacherDel.SQL.Clear;
-TeacherDel.SQL.Add('DELETE FROM Преподаватели');
-TeacherDel.SQL.Add('WHERE ИД ='+inttostr(DBGrid1.Fields[0].AsInteger)+';');
-TeacherDel.ExecSQL;
-Teacher.Close;
-Teacher.Open;
+Query_Teacher.close;
+Query_Teacher.SQL.Clear;
+Query_Teacher.SQL.Add('DELETE FROM Преподаватели');
+Query_Teacher.SQL.Add('WHERE ИД ='+inttostr(T_Teacher.Fields[0].AsInteger)+';');
+Query_Teacher.ExecSQL;
+Query_Teacher.Close;
+Query_Teacher.Open;
 end;
 
-procedure TForm10.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TTeacher.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form10.Hide;
+Teacher.Hide;
 MenuChoice.show;
 end;
 

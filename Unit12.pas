@@ -53,31 +53,31 @@ uses Unit10, Unit11;
 
 procedure TForm12.AutoDClick(Sender: TObject);
 begin
-Form10.Teacher.Close;
-Form10.Teacher.sql.Clear;
-Form10.Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
-Form10.Teacher.SQL.Add('FROM Преподаватели');
-Form10.Teacher.SQL.Add('WHERE Фамилия =:k;');
-Form10.Teacher.Parameters.ParamByName('k').Value:=FO.Text;
-Form10.Teacher.open;
-IO.Text:=Form10.DataSource1.DataSet.FindField('Имя').AsString;
-OO.Text:=Form10.DataSource1.DataSet.FindField('Отчество').AsString;
-Form10.Teacher.Close;
-Form10.Teacher.sql.Clear;
-Form10.Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
-Form10.Teacher.SQL.Add('FROM Преподаватели');
-Form10.Teacher.SQL.Add('WHERE Фамилия =:a;');
-Form10.Teacher.Parameters.ParamByName('a').Value:=FZ.Text;
-Form10.Teacher.open;
-IZ.Text:=Form10.DataSource1.DataSet.FindField('Имя').AsString;
-OZ.Text:=Form10.DataSource1.DataSet.FindField('Отчество').AsString;
+Teacher.Query_Teacher.close;
+Teacher.Query_Teacher.sql.Clear;
+Teacher.Query_Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
+Teacher.Query_Teacher.SQL.Add('FROM Преподаватели');
+Teacher.Query_Teacher.SQL.Add('WHERE Фамилия =:k;');
+Teacher.Query_Teacher.Parameters.ParamByName('k').Value:=FO.Text;
+Teacher.Query_Teacher.open;
+IO.Text:=Teacher.DS.DataSet.FindField('Имя').AsString;
+OO.Text:=Teacher.DS.DataSet.FindField('Отчество').AsString;
+Teacher.Query_Teacher.Close;
+Teacher.Query_Teacher.sql.Clear;
+Teacher.Query_Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
+Teacher.Query_Teacher.SQL.Add('FROM Преподаватели');
+Teacher.Query_Teacher.SQL.Add('WHERE Фамилия =:a;');
+Teacher.Query_Teacher.Parameters.ParamByName('a').Value:=FZ.Text;
+Teacher.Query_Teacher.open;
+IZ.Text:=Teacher.DS.DataSet.FindField('Имя').AsString;
+OZ.Text:=Teacher.DS.DataSet.FindField('Отчество').AsString;
 showmessage('Автозаполнение прошло успешно!');
 end;
 
 procedure TForm12.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 Form12.Hide;
-Form11.show;
+JournalReplacment.show;
 end;
 
 procedure TForm12.InsertTabClick(Sender: TObject);
@@ -88,8 +88,8 @@ InsertJZ.SQL.Add('INSERT INTO ЖЗ(ФО,ИО,ОО,ФЗ,ИЗ,ОЗ,Дисциплина,[Кол-во часов])');
 InsertJZ.SQL.Add('VALUES('''+FO.Text+''','''+IO.Text+''','''+OO.Text+''','''+FZ.text+''','''+IZ.text+''','''+OZ.Text+''','''+Disp.Text+''','''+KCH.Text+''');');
 //showmessage(InsertJZ.SQL.Text);
 InsertJZ.ExecSQL;
-Form11.JournalZam.Close;
-Form11.JournalZam.open;
+JournalReplacment.Query_Journalreplacement.Close;
+JournalReplacment.Query_Journalreplacement.open;
 end;
 
 end.

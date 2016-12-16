@@ -8,7 +8,7 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.jpeg, Vcl.ExtCtrls;
 
 type
-  TForm14 = class(TForm)
+  TTaskBook = class(TForm)
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
@@ -32,11 +32,11 @@ type
     Label11: TLabel;
     Label12: TLabel;
     Dobavit: TButton;
-    JP: TADOQuery;
-    DataSource1: TDataSource;
+    Query_TaskJournal: TADOQuery;
+    DS: TDataSource;
     Button1: TButton;
-    Inf: TADOQuery;
-    DataSource2: TDataSource;
+    Query_Information: TADOQuery;
+    DS2: TDataSource;
     procedure Button1Click(Sender: TObject);
     procedure DobavitClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -47,7 +47,7 @@ type
   end;
 
 var
-  Form14: TForm14;
+  TaskBook: TTaskBook;
 
 implementation
 
@@ -55,46 +55,46 @@ implementation
 
 uses Unit2;
 
-procedure TForm14.Button1Click(Sender: TObject);
+procedure TTaskBook.Button1Click(Sender: TObject);
 begin
-Form14.Inf.Close;
-Form14.Inf.sql.Clear;
-Form14.Inf.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
-Form14.Inf.SQL.Add('FROM Сотрудники');
-Form14.Inf.SQL.Add('WHERE Фамилия =:k;');
-Form14.Inf.Parameters.ParamByName('k').Value:=InFam.Text;
-Form14.Inf.open;
-InImya.Text:=DataSource2.DataSet.FindField('Имя').AsString;
-InOtch.Text:=DataSource2.DataSet.FindField('Отчество').AsString;
-Inf.Close;
-Inf.sql.Clear;
-Inf.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
-Inf.SQL.Add('FROM Сотрудники');
-Inf.SQL.Add('WHERE Фамилия =:a;');
-Inf.Parameters.ParamByName('a').Value:=IsFam.Text;
-Inf.open;
-IsImya.Text:=DataSource2.DataSet.FindField('Имя').AsString;
-IsOtch.Text:=DataSource2.DataSet.FindField('Отчество').AsString;
+TaskBook.Query_Information.Close;
+TaskBook.Query_Information.sql.Clear;
+TaskBook.Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
+TaskBook.Query_Information.SQL.Add('FROM Сотрудники');
+TaskBook.Query_Information.SQL.Add('WHERE Фамилия =:k;');
+TaskBook.Query_Information.Parameters.ParamByName('k').Value:=InFam.Text;
+TaskBook.Query_Information.open;
+InImya.Text:=DS2.DataSet.FindField('Имя').AsString;
+InOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
+Query_Information.Close;
+Query_Information.sql.Clear;
+Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
+Query_Information.SQL.Add('FROM Сотрудники');
+Query_Information.SQL.Add('WHERE Фамилия =:a;');
+Query_Information.Parameters.ParamByName('a').Value:=IsFam.Text;
+Query_Information.open;
+IsImya.Text:=DS2.DataSet.FindField('Имя').AsString;
+IsOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
 showmessage('Автозаполнение прошло успешно!');
 end;
 
-procedure TForm14.DobavitClick(Sender: TObject);
+procedure TTaskBook.DobavitClick(Sender: TObject);
 begin
-Form14.JP.Close;
-JP.SQL.clear;
-JP.SQL.Add('INSERT INTO ЖП(ИФ,ИИ,ИО,КИ,З,ИФ1,ИИ1,ИО1)');
-JP.SQL.Add('VALUES('''+InFam.Text+''','''+InImya.Text+''','''+InOtch.Text+''','''+KrInf.Text+''','''+Zadacha.Text+''','''+IsFam.Text+''','''+IsImya.text+''','''+IsOtch.Text+''');');
-JP.ExecSQL;
-JP.Close;
-JP.SQL.Clear;
-JP.SQL.Add('SELECT * FROM ЖП;');
-JP.Open;
+TaskBook.Query_TaskJournal.Close;
+Query_TaskJournal.SQL.clear;
+Query_TaskJournal.SQL.Add('INSERT INTO ЖП(ИФ,ИИ,ИО,КИ,З,ИФ1,ИИ1,ИО1)');
+Query_TaskJournal.SQL.Add('VALUES('''+InFam.Text+''','''+InImya.Text+''','''+InOtch.Text+''','''+KrInf.Text+''','''+Zadacha.Text+''','''+IsFam.Text+''','''+IsImya.text+''','''+IsOtch.Text+''');');
+Query_TaskJournal.ExecSQL;
+Query_TaskJournal.Close;
+Query_TaskJournal.SQL.Clear;
+Query_TaskJournal.SQL.Add('SELECT * FROM ЖП;');
+Query_TaskJournal.Open;
 showmessage('Поручение зарегистрировано!');
 end;
 
-procedure TForm14.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TTaskBook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form14.Hide;
+TaskBook.Hide;
 MenuChoice.show;
 end;
 

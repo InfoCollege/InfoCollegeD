@@ -9,13 +9,14 @@ uses
   Unit5 in 'Unit5.pas' {AdmissionCommittee},
   Unit6 in 'Unit6.pas' {RegisterStudent},
   Unit7 in 'Unit7.pas' {Rating},
-  Unit8 in 'Unit8.pas' {Form8},
-  Unit9 in 'Unit9.pas' {Form9},
-  Unit10 in 'Unit10.pas' {Form10},
-  Unit11 in 'Unit11.pas' {Form11},
+  Unit8 in 'Unit8.pas' {MenuGenerate},
+  Unit9 in 'Unit9.pas' {workload},
+  Unit10 in 'Unit10.pas' {Teacher},
+  Unit11 in 'Unit11.pas' {JournalReplacment},
   Unit12 in 'Unit12.pas' {Form12},
   Unit13 in 'Unit13.pas' {Form13},
-  Unit14 in 'Unit14.pas' {Form14};
+  Unit14 in 'Unit14.pas' {TaskBook},
+  Unit15 in 'Unit15.pas' {MethodicalCabinet};
 
 {$R *.res}
 
@@ -29,12 +30,13 @@ begin
   Application.CreateForm(TAdmissionCommittee, AdmissionCommittee);
   Application.CreateForm(TRegisterStudent, RegisterStudent);
   Application.CreateForm(TRating, Rating);
-  Application.CreateForm(TForm8, Form8);
-  Application.CreateForm(TForm9, Form9);
-  Application.CreateForm(TForm10, Form10);
-  Application.CreateForm(TForm11, Form11);
+  Application.CreateForm(TMenuGenerate, MenuGenerate);
+  Application.CreateForm(Tworkload, workload);
+  Application.CreateForm(TTeacher, Teacher);
+  Application.CreateForm(TJournalReplacment, JournalReplacment);
   Application.CreateForm(TForm12, Form12);
   Application.CreateForm(TForm13, Form13);
-  Application.CreateForm(TForm14, Form14);
+  Application.CreateForm(TTaskBook, TaskBook);
+  Application.CreateForm(TMethodicalCabinet, MethodicalCabinet);
   Application.Run;
 end.

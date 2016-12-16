@@ -8,38 +8,38 @@ uses
  ComObj, Vcl.Imaging.jpeg;
 
 type
-  TForm8 = class(TForm)
-    Image1: TImage;
-    Label9: TLabel;
-    Label3: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label4: TLabel;
+  TMenuGenerate = class(TForm)
+    Background: TImage;
+    L_ModuleName: TLabel;
+    L_University: TLabel;
+    L_Surname: TLabel;
+    L_Name: TLabel;
+    L_MiddleName: TLabel;
     Surname: TEdit;
     Name: TEdit;
     MiddleName: TEdit;
-    Label5: TLabel;
+    L_Group: TLabel;
     Group: TEdit;
-    Label6: TLabel;
+    L_Date: TLabel;
     Date: TEdit;
-    Label7: TLabel;
+    L_Destination: TLabel;
     Destination: TEdit;
-    Button2: TButton;
-    Label8: TLabel;
-    Label10: TLabel;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    FIOruk: TEdit;
-    DolRuk: TEdit;
-    Button1: TButton;
+    handbook: TButton;
+    L_director: TLabel;
+    L_Position: TLabel;
+    Director1: TRadioButton;
+    Director2: TRadioButton;
+    director: TEdit;
+    position: TEdit;
+    Generate: TButton;
     SaveDialog1: TSaveDialog;
-    RadioGroup1: TRadioGroup;
-    procedure RadioButton1Click(Sender: TObject);
+    AddInfo: TRadioGroup;
+    procedure Director1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure RadioButton2Click(Sender: TObject);
-    procedure RadioGroup1Click(Sender: TObject);
+    procedure GenerateClick(Sender: TObject);
+    procedure handbookClick(Sender: TObject);
+    procedure Director2Click(Sender: TObject);
+    procedure AddInfoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,7 +47,7 @@ type
   end;
 
 var
-  Form8: TForm8;
+  MenuGenerate: TMenuGenerate;
   a:string;
 
 implementation
@@ -56,7 +56,7 @@ implementation
 
 uses Unit2, Unit6, Unit1;
 
-procedure TForm8.Button1Click(Sender: TObject);
+procedure TMenuGenerate.GenerateClick(Sender: TObject);
  const
   wdAlignParagraphCenter = 1;
   wdAlignParagraphLeft = 0;
@@ -95,62 +95,62 @@ begin
   //Для ускорения обработки в случае больших текстов.
   wdApp.ScreenUpdating := False;
  try
-wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
-wdRng.InsertAfter('ФГБОУ ВО "МГУТУ им.К.Г.Разумовского(ПКУ)');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('Университетский колледж информационных технологий');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('г.Москва, Костомаровская набережная д.29');
-wdRng.InsertAfter(#13#10);
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-wdRng.Font.Name := 'Times New Roman';
-wdRng.Font.Bold := True;
-wdRng.Font.Size := 14;
-wdRng.Start := wdRng.End;
-wdRng.ParagraphFormat.Reset;
-wdRng.Font.Reset;
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('СПРАВКА №');
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-wdRng.InsertAfter(#13#10);
-wdRng.Font.Bold := True;
-wdRng.Font.Size := 18;
-wdRng.Start := wdRng.End;
-wdRng.ParagraphFormat.Reset;
-wdRng.Font.Reset;
-wdRng.InsertAfter('Выдана  '+Fam.Text+' '+Imya.Text+' '+Otch.Text+'');
-wdRng.InsertAfter(#13#10);
-wdRng.Font.Bold := False;
-wdRng.Font.Size := 14;
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-wdRng.InsertAfter('В том, что он(она) является (являлась) в '+God.Text+' учебном году студентом очной формы обучения   ');
-wdRng.Font.Bold := False;
-wdRng.Font.Size := 14;
-wdRng.Start := wdRng.End;
-wdRng.ParagraphFormat.Reset;
-wdRng.Font.Reset;
-wdRng.InsertAfter('Федерального государственного бюджетного образовательного учреждения высшего образования "Московский государственный университет технологий и управления имени К.Г.Разумовского (Первый казачий университет)');
-wdRng.InsertAfter(#13#10);
-wdRng.Font.Bold := False;
-wdRng.Font.Size := 14;
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-wdRng.Start := wdRng.End;
-wdRng.ParagraphFormat.Reset;
-wdRng.Font.Reset;
-wdRng.InsertAfter('Учебная группа  '+Gruppa.Text+' по программе СПО  '+a+'');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('Справка дана для предоставления в  '+Treb.Text+'.');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter(#13#10);
-wdRng.Font.Bold := False;
-wdRng.Font.Size := 14;
-wdRng.Start := wdRng.End;
-wdRng.ParagraphFormat.Reset;
-wdRng.Font.Reset;
-wdRng.InsertAfter(''+DolRuk.Text+'                                          '+FioRuk.Text+'');
-wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-wdRng.Font.Bold := True;
-wdRng.Font.Size := 15;
+ wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
+ wdRng.InsertAfter('ФГБОУ ВО "МГУТУ им.К.Г.Разумовского(ПКУ)');
+ wdRng.InsertAfter(#13#10);
+ wdRng.InsertAfter('Университетский колледж информационных технологий');
+ wdRng.InsertAfter(#13#10);
+ wdRng.InsertAfter('г.Москва, Костомаровская набережная д.29');
+ wdRng.InsertAfter(#13#10);
+ wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
+ wdRng.Font.Name := 'Times New Roman';
+ wdRng.Font.Bold := True;
+ wdRng.Font.Size := 14;
+ wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+ wdRng.Font.Reset;
+ wdRng.InsertAfter(#13#10);
+ wdRng.InsertAfter('СПРАВКА №');
+ wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
+ wdRng.InsertAfter(#13#10);
+ wdRng.Font.Bold := True;
+ wdRng.Font.Size := 18;
+ wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+ wdRng.Font.Reset;
+ wdRng.InsertAfter('Выдана  '+Surname.Text+' '+Name.Text+' '+Middlename.Text+'');
+ wdRng.InsertAfter(#13#10);
+ wdRng.Font.Bold := False;
+ wdRng.Font.Size := 14;
+ wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
+ wdRng.InsertAfter('В том, что он(она) является (являлась) в '+Date.Text+' учебном году студентом очной формы обучения   ');
+ wdRng.Font.Bold := False;
+ wdRng.Font.Size := 14;
+ wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+ wdRng.Font.Reset;
+ wdRng.InsertAfter('Федерального государственного бюджетного образовательного учреждения высшего образования "Московский государственный университет технологий и управления имени К.Г.Разумовского (Первый казачий университет)');
+ wdRng.InsertAfter(#13#10);
+ wdRng.Font.Bold := False;
+ wdRng.Font.Size := 14;
+ wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
+ wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+ wdRng.Font.Reset;
+ wdRng.InsertAfter('Учебная группа  '+Group.Text+' по программе СПО  '+a+'');
+ wdRng.InsertAfter(#13#10);
+ wdRng.InsertAfter('Справка дана для предоставления в  '+Destination.Text+'.');
+ wdRng.InsertAfter(#13#10);
+ wdRng.InsertAfter(#13#10);
+ wdRng.Font.Bold := False;
+ wdRng.Font.Size := 14;
+ wdRng.Start := wdRng.End;
+ wdRng.ParagraphFormat.Reset;
+ wdRng.Font.Reset;
+ wdRng.InsertAfter(''+Position.Text+'                                          '+Director.Text+'');
+ wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
+ wdRng.Font.Bold := True;
+ wdRng.Font.Size := 15;
  finally
     //Включение перерисовки окна MS Word. В случае, если wdApp.Visible := True.
     wdApp.ScreenUpdating := True;
@@ -175,35 +175,35 @@ wdRng.Font.Size := 15;
  end;
 
 
-procedure TForm8.Button2Click(Sender: TObject);
+procedure TMenuGenerate.handbookClick(Sender: TObject);
 begin
-Form8.hide;
+Generate.hide;
 RegisterStudent.show;
 end;
 
-procedure TForm8.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TMenuGenerate.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form8.Hide;
+Generate.Hide;
 MenuChoice.show;
 end;
 
-procedure TForm8.RadioButton1Click(Sender: TObject);
+procedure TMenuGenerate.Director1Click(Sender: TObject);
 begin
-FIORuk.Text:='Александров Р.В.';
-DolRuk.Text:='Директор колледжа';
+Director.Text:='Александров Р.В.';
+Position.Text:='Директор колледжа';
 end;
 
-procedure TForm8.RadioButton2Click(Sender: TObject);
+procedure TMenuGenerate.Director2Click(Sender: TObject);
 begin
-FIORuk.text:=MainForm.AuthDS1.DataSet.FindField('Сокр_имя').AsString;
-DolRuk.text:=MainForm.AuthDS1.DataSet.FindField('Наименование').AsString;
+Director.text:=MainForm.AuthDS1.DataSet.FindField('Сокр_имя').AsString;
+Position.text:=MainForm.AuthDS1.DataSet.FindField('Наименование').AsString;
 end;
 
 
 
-procedure TForm8.RadioGroup1Click(Sender: TObject);
+procedure TMenuGenerate.AddInfoClick(Sender: TObject);
 begin
-case RadioGroup1.ItemIndex of
+case AddInfo.ItemIndex of
 0: a:=RegisterStudent.T_RegisterStudent.DataSource.DataSet.FindField('Специальность').AsString;
 1: a:='';
 end;

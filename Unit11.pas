@@ -8,15 +8,15 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.jpeg, Vcl.ExtCtrls;
 
 type
-  TForm11 = class(TForm)
-    Image1: TImage;
-    Label9: TLabel;
-    DBGrid1: TDBGrid;
-    Button1: TButton;
-    JournalZam: TADOQuery;
-    DataSource1: TDataSource;
+  TJournalReplacment = class(TForm)
+    Background: TImage;
+    L_JournalReplacment: TLabel;
+    T_JournalReplacment: TDBGrid;
+    Add: TButton;
+    Query_Journalreplacement: TADOQuery;
+    DS: TDataSource;
     Label2: TLabel;
-    procedure Button1Click(Sender: TObject);
+    procedure AddClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,7 +24,7 @@ type
   end;
 
 var
-  Form11: TForm11;
+  JournalReplacment: TJournalReplacment;
 
 implementation
 
@@ -32,9 +32,9 @@ implementation
 
 uses Unit12;
 
-procedure TForm11.Button1Click(Sender: TObject);
+procedure TJournalReplacment.AddClick(Sender: TObject);
 begin
-Form11.hide;
+JournalReplacment.hide;
 Form12.Show;
 end;
 

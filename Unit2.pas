@@ -46,6 +46,7 @@ type
     procedure N15Click(Sender: TObject);
     procedure N16Click(Sender: TObject);
     procedure N9Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,7 +58,7 @@ var
 
 implementation
     uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9, Unit10, Unit11,
-  Unit13, Unit14;
+  Unit13, Unit14, Unit15;
 {$R *.dfm}
 
 procedure TMenuChoice.N7Click(Sender: TObject);
@@ -69,7 +70,7 @@ end;
 procedure TMenuChoice.N9Click(Sender: TObject);
 begin
 MenuChoice.hide;
-Form14.show;
+TaskBook.show;
 end;
 
 procedure TMenuChoice.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -87,19 +88,19 @@ end;
 procedure TMenuChoice.N13Click(Sender: TObject);
 begin
 MenuChoice.hide;
-Form10.show;
+Teacher.show;
 end;
 
 procedure TMenuChoice.N14Click(Sender: TObject);
 begin
 MenuChoice.hide;
-Form9.show;
+Workload.show;
 end;
 
 procedure TMenuChoice.N15Click(Sender: TObject);
 begin
 MenuChoice.hide;
-Form11.show;
+Journalreplacment.show;
 end;
 
 procedure TMenuChoice.N16Click(Sender: TObject);
@@ -123,13 +124,19 @@ end;
 procedure TMenuChoice.N19Click(Sender: TObject);
 begin
 MenuChoice.Hide;
-Form8.show;
+MenuGenerate.show;
 end;
 
 procedure TMenuChoice.N20Click(Sender: TObject);
 begin
 MenuChoice.hide;
 RegisterStudent.show;
+end;
+
+procedure TMenuChoice.N4Click(Sender: TObject);
+begin
+Menuchoice.hide;
+methodicalcabinet.show;
 end;
 
 end.

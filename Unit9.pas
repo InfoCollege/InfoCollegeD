@@ -8,19 +8,19 @@ uses
   Vcl.ExtCtrls, Data.DB, Data.Win.ADODB, Vcl.Grids, Vcl.DBGrids,ComObj;
 
 type
-  TForm9 = class(TForm)
-    Label9: TLabel;
-    DBGrid1: TDBGrid;
-    ADOQuery1: TADOQuery;
-    DataSource1: TDataSource;
-    Button1: TButton;
-    Label11: TLabel;
-    Image1: TImage;
+  Tworkload = class(TForm)
+    L_workload: TLabel;
+    T_Workload: TDBGrid;
+    Query_workload: TADOQuery;
+    DS1: TDataSource;
+    Generate: TButton;
+    L_University: TLabel;
+    Background: TImage;
     SaveDialog1: TSaveDialog;
-    RadioGroup1: TRadioGroup;
+    CaseVersion: TRadioGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button1Click(Sender: TObject);
-    procedure RadioGroup1Click(Sender: TObject);
+    procedure GenerateClick(Sender: TObject);
+    procedure CaseVersionClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,7 +28,7 @@ type
   end;
 
 var
-  Form9: TForm9;
+  workload: Tworkload;
   num_rows, num_columns:integer;
 implementation
 
@@ -36,7 +36,7 @@ implementation
 
 uses Unit2;
 
-procedure TForm9.Button1Click(Sender: TObject);
+procedure Tworkload.GenerateClick(Sender: TObject);
 const
   wdAlignParagraphCenter = 1;
   wdAlignParagraphLeft = 0;
@@ -145,11 +145,11 @@ wdRng.Start := wdRng.End;
 finally
 end;
   try
-    if not ADOQuery1.Active then ADOQuery1.Open;
+    if not Query_workload.Active then Query_workload.Open;
     begin
     wdRng.InsertAfter(#13#10);
     //Добавляем таблицу MS Word. Пока создаём таблицу с двумя строками.
-    wdTable := wdDoc.Tables.Add(wdRng.Characters.Last, 2, ADOQuery1.Fields.Count);
+    wdTable := wdDoc.Tables.Add(wdRng.Characters.Last, 2, Query_workload.Fields.Count);
     //Параметры линий таблицы.
     wdTable.Borders.InsideLineStyle := wdLineStyleSingle;
     wdTable.Borders.OutsideLineStyle := wdLineStyleSingle;
@@ -170,25 +170,25 @@ end;
     wdRng.Font.Bold := False;
     //Записываем шапку таблицы
     end;
-    for i := 0 to ADOQuery1.Fields.Count - 1 do
-      wdTable.Cell(1, i + 1).Range.Text := ADOQuery1.Fields[i].DisplayName;
+    for i := 0 to Query_workload.Fields.Count - 1 do
+      wdTable.Cell(1, i + 1).Range.Text := Query_workload.Fields[i].DisplayName;
     //Записываем данные таблицы.
-    ADOQuery1.DisableControls;
-    Bm := ADOQuery1.GetBookMark;
-    ADOQuery1.First;
+    Query_workload.DisableControls;
+    Bm := Query_workload.GetBookMark;
+    Query_workload.First;
     i:= 1;
      //Текущая строка в таблице MS Word.
-    while not ADOQuery1.Eof do begin
+    while not Query_workload.Eof do begin
       Inc(i);
       //Если требуется, добавляем новую строку в конец таблицы.
       if i > 2 then wdTable.Rows.Add;
       //Записываем данные в строку таблицы MS Word.
-      for j := 0 to ADOQuery1.Fields.Count - 1 do
-        wdTable.Cell(i, j + 1).Range.Text := ADOQuery1.Fields[j].AsString;
-      ADOQuery1.Next;
+      for j := 0 to Query_workload.Fields.Count - 1 do
+        wdTable.Cell(i, j + 1).Range.Text := Query_workload.Fields[j].AsString;
+      Query_workload.Next;
     end;
-    ADOQuery1.GotoBookMark(Bm);
-    ADOQuery1.EnableControls;
+    Query_workload.GotoBookMark(Bm);
+    Query_workload.EnableControls;
 
      finally
   wdRng := wdDoc.Range.Characters.Last;;
@@ -223,32 +223,32 @@ end;
   //Закрываем MS Word.
   //wdApp.Quit;
  end;
-procedure TForm9.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tworkload.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form9.Hide;
+Workload.Hide;
 MenuChoice.show;
 end;
 
-procedure TForm9.RadioGroup1Click(Sender: TObject);
+procedure Tworkload.CaseVersionClick(Sender: TObject);
 begin
-case RadioGroup1.ItemIndex of
+case CaseVersion.ItemIndex of
 0: begin
-ADOQuery1.close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT *');
-ADOQuery1.SQL.Add('FROM Преподаватели');
-ADOQuery1.SQL.Add('ORDER BY Фамилия;');
-ADOQuery1.open;
-DBGrid1.ReadOnly:=false;
+Query_workload.close;
+Query_workload.SQL.clear;
+Query_workload.SQL.Add('SELECT *');
+Query_workload.SQL.Add('FROM Преподаватели');
+Query_workload.SQL.Add('ORDER BY Фамилия;');
+Query_workload.open;
+T_workload.ReadOnly:=false;
 end;
 1:  begin
-ADOQuery1.close;
-ADOQuery1.SQL.clear;
-ADOQuery1.SQL.Add('SELECT Фамилия,Имя,Отчество,[Годовая нагрузка]');
-ADOQuery1.SQL.Add('FROM Преподаватели');
-ADOQuery1.SQL.Add('ORDER BY Фамилия;');
-ADOQuery1.open;
-DBGrid1.ReadOnly:=true;
+Query_workload.close;
+Query_workload.SQL.clear;
+Query_workload.SQL.Add('SELECT Фамилия,Имя,Отчество,[Годовая нагрузка]');
+Query_workload.SQL.Add('FROM Преподаватели');
+Query_workload.SQL.Add('ORDER BY Фамилия;');
+Query_workload.open;
+T_workload.ReadOnly:=true;
 end;
 end;
 end;
