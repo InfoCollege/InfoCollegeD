@@ -25,6 +25,7 @@ type
     L_FilenameText: TLabel;
     Query_MethodicalCabinet: TADOQuery;
     DS: TDataSource;
+    L_University: TLabel;
     procedure LoadingClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AddMaterialClick(Sender: TObject);

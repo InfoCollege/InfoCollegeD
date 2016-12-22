@@ -34,7 +34,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2;
+uses Unit2, Unit1;
 
 procedure Tworkload.GenerateClick(Sender: TObject);
 const
@@ -82,11 +82,9 @@ num_columns:=0;
 
 try
 wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
-wdRng.InsertAfter('ФГБОУ ВО «МГУТУ им.К.Г.Разумовского(ПКУ)»');
+wdRng.InsertAfter(''+MainForm.INFO.Fields[0].AsString+'');
 wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('Университетский колледж информационных технологий');
-wdRng.InsertAfter(#13#10);
-wdRng.InsertAfter('г.Москва, Костомаровская набережная д.29');
+wdRng.InsertAfter(''+MainForm.INFO.Fields[2].AsString+'');
 wdRng.InsertAfter(#13#10);
 wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
 wdRng.Font.Name := 'Times New Roman';
@@ -197,7 +195,7 @@ end;
   wdRng.InsertAfter(#13#10);
   wdRng.InsertAfter(#13#10);
   wdRng.InsertAfter(#13#10);
-  wdRng.InsertAfter('Директор колледжа                              Александров Р.В.');
+  wdRng.InsertAfter('Директор колледжа                              '+MainForm.INFO.Fields[3].AsString+'');
   wdRng.Font.Bold := true;
   wdRng.Font.Size := 16;
   wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;

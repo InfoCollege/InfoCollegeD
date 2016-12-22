@@ -11,7 +11,7 @@ type
   TTaskBook = class(TForm)
     Image1: TImage;
     Label1: TLabel;
-    Label2: TLabel;
+    L_University: TLabel;
     DBGrid1: TDBGrid;
     KrInf: TEdit;
     Zadacha: TEdit;

@@ -17,7 +17,8 @@ uses
   Unit13 in 'Unit13.pas' {Form13},
   Unit14 in 'Unit14.pas' {TaskBook},
   Unit15 in 'Unit15.pas' {MethodicalCabinet},
-  Unit16 in 'Unit16.pas' {RegistInfo};
+  Unit16 in 'Unit16.pas' {RegistInfo},
+  Unit17 in 'Unit17.pas' {RegistrationTask};
 
 {$R *.res}
 
@@ -40,5 +41,6 @@ begin
   Application.CreateForm(TTaskBook, TaskBook);
   Application.CreateForm(TMethodicalCabinet, MethodicalCabinet);
   Application.CreateForm(TRegistInfo, RegistInfo);
+  Application.CreateForm(TRegistrationTask, RegistrationTask);
   Application.Run;
 end.

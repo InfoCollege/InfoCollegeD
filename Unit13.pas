@@ -10,7 +10,7 @@ uses
 type
   TForm13 = class(TForm)
     Image1: TImage;
-    Label2: TLabel;
+    L_University: TLabel;
     Label1: TLabel;
     DBGrid1: TDBGrid;
     Period: TEdit;

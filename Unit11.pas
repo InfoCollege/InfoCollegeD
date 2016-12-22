@@ -15,7 +15,7 @@ type
     Add: TButton;
     Query_Journalreplacement: TADOQuery;
     DS: TDataSource;
-    Label2: TLabel;
+    L_University: TLabel;
     procedure AddClick(Sender: TObject);
   private
     { Private declarations }

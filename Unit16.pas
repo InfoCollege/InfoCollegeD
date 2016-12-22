@@ -5,23 +5,28 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Imaging.jpeg, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Imaging.jpeg, Vcl.ExtCtrls, Data.Win.ADODB;
 
 type
   TRegistInfo = class(TForm)
     Background: TImage;
     L_ModuleName: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Button1: TButton;
-    Label4: TLabel;
-    Edit4: TEdit;
+    L_Surname: TLabel;
+    L_Name: TLabel;
+    L_MiddleName: TLabel;
+    Surname: TEdit;
+    Name: TEdit;
+    Middlename: TEdit;
+    RegistrationInfo: TButton;
+    L_Group: TLabel;
+    Group: TEdit;
     DBGrid1: TDBGrid;
+    Insert_Info: TADOQuery;
+    DS: TDataSource;
+    Query_RegistInfo: TADOQuery;
+    L_University: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure RegistrationInfoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +41,22 @@ implementation
 {$R *.dfm}
 
 uses Unit2;
+
+procedure TRegistInfo.RegistrationInfoClick(Sender: TObject);
+begin
+Insert_info.Close;
+Insert_info.SQL.Clear;
+Insert_info.SQL.Add('INSERT INTO ЖС(Фамилия,Имя,Отчество,Группа)');
+Insert_info.SQL.Add('VALUES (:a,:b,:c,:d);');
+Insert_info.Parameters.ParamByName('a').Value:=Surname.Text;
+Insert_info.Parameters.ParamByName('b').Value:=Name.Text;
+Insert_info.Parameters.ParamByName('c').Value:=MiddleName.Text;
+Insert_info.Parameters.ParamByName('d').Value:=Group.Text;
+Insert_info.ExecSQL;
+Query_RegistInfo.Close;
+Query_RegistInfo.open;
+
+end;
 
 procedure TRegistInfo.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

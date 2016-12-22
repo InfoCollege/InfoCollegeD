@@ -96,12 +96,10 @@ begin
   wdApp.ScreenUpdating := False;
  try
  wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
- wdRng.InsertAfter('ФГБОУ ВО "МГУТУ им.К.Г.Разумовского(ПКУ)');
- wdRng.InsertAfter(#13#10);
- wdRng.InsertAfter('Университетский колледж информационных технологий');
- wdRng.InsertAfter(#13#10);
- wdRng.InsertAfter('г.Москва, Костомаровская набережная д.29');
- wdRng.InsertAfter(#13#10);
+wdRng.InsertAfter(''+MainForm.INFO.Fields[0].AsString+'');
+wdRng.InsertAfter(#13#10);
+wdRng.InsertAfter(''+MainForm.INFO.Fields[2].AsString+'');
+wdRng.InsertAfter(#13#10);
  wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
  wdRng.Font.Name := 'Times New Roman';
  wdRng.Font.Bold := True;
@@ -129,7 +127,7 @@ begin
  wdRng.Start := wdRng.End;
  wdRng.ParagraphFormat.Reset;
  wdRng.Font.Reset;
- wdRng.InsertAfter('Федерального государственного бюджетного образовательного учреждения высшего образования "Московский государственный университет технологий и управления имени К.Г.Разумовского (Первый казачий университет)');
+ wdRng.InsertAfter(''+MainForm.INFO.Fields[0].AsString+'');
  wdRng.InsertAfter(#13#10);
  wdRng.Font.Bold := False;
  wdRng.Font.Size := 14;
@@ -189,7 +187,7 @@ end;
 
 procedure TMenuGenerate.Director1Click(Sender: TObject);
 begin
-Director.Text:='Александров Р.В.';
+Director.Text:=''+MainForm.INFO.Fields[3].AsString+'';
 Position.Text:='Директор колледжа';
 end;
 

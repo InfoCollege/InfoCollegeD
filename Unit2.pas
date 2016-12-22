@@ -47,6 +47,8 @@ type
     procedure N16Click(Sender: TObject);
     procedure N9Click(Sender: TObject);
     procedure N4Click(Sender: TObject);
+    procedure N11Click(Sender: TObject);
+    procedure N12Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,7 +60,7 @@ var
 
 implementation
     uses unit1,unit3, Unit4, Unit5, Unit7, Unit8, Unit6, Unit9, Unit10, Unit11,
-  Unit13, Unit14, Unit15;
+  Unit13, Unit14, Unit15, Unit16, Unit17;
 {$R *.dfm}
 
 procedure TMenuChoice.N7Click(Sender: TObject);
@@ -83,6 +85,18 @@ procedure TMenuChoice.N10Click(Sender: TObject);
 begin
 MenuChoice.Hide;
 RegisterDiplomas.show;
+end;
+
+procedure TMenuChoice.N11Click(Sender: TObject);
+begin
+MenuChoice.hide;
+RegistInfo.show;
+end;
+
+procedure TMenuChoice.N12Click(Sender: TObject);
+begin
+MenuChoice.hide;
+RegistrationTask.show;
 end;
 
 procedure TMenuChoice.N13Click(Sender: TObject);

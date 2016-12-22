@@ -21,7 +21,9 @@ type
     Query_Auth: TADOQuery;
     L_Version: TLabel;
     AuthDS1: TDataSource;
+    INFO: TADOQuery;
     procedure AuthClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,7 +35,8 @@ var
 
 implementation
 
-uses Unit2;
+uses Unit2, Unit4, Unit5, Unit6, Unit10, Unit11, Unit12, Unit13, Unit14, Unit15,
+  Unit16, Unit8, Unit17;
 
 {$R *.dfm}
 
@@ -57,6 +60,24 @@ MenuChoice.username.Caption:=AuthDS1.DataSet.FindField('Сокр_имя').AsString;
 end
 else
 showmessage('Ошибка №1.Обнаруженая неправильная пара логин/пароль');
+end;
+
+procedure TMainForm.FormActivate(Sender: TObject);
+begin
+L_University.caption:=INFO.Fields[0].AsString;
+MenuChoice.L_University.caption:=INFO.Fields[0].AsString;
+MenuGenerate.L_University.caption:=INFO.Fields[0].AsString;
+RegisterDiplomas.L_University.caption:=INFO.Fields[0].AsString;
+AdmissionCommittee.L_University.caption:=INFO.Fields[0].AsString;
+RegisterStudent.L_University.caption:=INFO.Fields[0].AsString;
+Teacher.L_University.caption:=INFO.Fields[0].AsString;
+JournalReplacment.L_University.caption:=INFO.Fields[0].AsString;
+Form12.L_University.caption:=INFO.Fields[0].AsString;
+Form13.L_University.caption:=INFO.Fields[0].AsString;
+TaskBook.L_University.caption:=INFO.Fields[0].AsString;
+MethodicalCabinet.L_University.caption:=INFO.Fields[0].AsString;
+RegistInfo.L_University.caption:=INFO.Fields[0].AsString;
+RegistrationTask.L_University.caption:=INFO.Fields[0].AsString;
 end;
 
 end.

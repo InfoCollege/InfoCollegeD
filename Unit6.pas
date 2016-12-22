@@ -50,6 +50,7 @@ MenuGenerate.Surname.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[1]
 MenuGenerate.Name.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[2].AsString;
 MenuGenerate.Middlename.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[3].AsString;
 MenuGenerate.Group.Text:=T_RegisterStudent.DataSource.DataSet.Fields.Fields[4].AsString;
+MenuGenerate.Generate.Visible:=true;
 
 end;
 

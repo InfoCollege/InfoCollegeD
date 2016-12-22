@@ -57,6 +57,7 @@ type
     PrintCard: TButton;
     SaveDialog1: TSaveDialog;
     Query_Register: TADOQuery;
+    L_University: TLabel;
     procedure —ountingClick(Sender: TObject);
     procedure RegisterClick(Sender: TObject);
     procedure PrintCardClick(Sender: TObject);
@@ -151,7 +152,7 @@ wdRng.InsertAfter(#13#10);
 wdRng.Start := wdRng.End;
 wdRng.ParagraphFormat.Reset;
 wdRng.Font.Reset;
-wdRng.InsertBefore('œ–»≈ÃÕ¿ﬂ  ŒÃ»——»ﬂ ” »“');
+wdRng.InsertBefore('œ–»≈ÃÕ¿ﬂ  ŒÃ»——»ﬂ ');
 wdRng.Font.Name := 'Times New Roman';
 wdRng.Font.Bold := True;
 wdRng.Font.Size := 18;
