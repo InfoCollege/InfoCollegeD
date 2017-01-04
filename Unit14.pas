@@ -57,39 +57,70 @@ uses Unit2;
 
 procedure TTaskBook.Button1Click(Sender: TObject);
 begin
-TaskBook.Query_Information.Close;
-TaskBook.Query_Information.sql.Clear;
-TaskBook.Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
-TaskBook.Query_Information.SQL.Add('FROM Сотрудники');
-TaskBook.Query_Information.SQL.Add('WHERE Фамилия =:k;');
-TaskBook.Query_Information.Parameters.ParamByName('k').Value:=InFam.Text;
-TaskBook.Query_Information.open;
-InImya.Text:=DS2.DataSet.FindField('Имя').AsString;
-InOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
-Query_Information.Close;
-Query_Information.sql.Clear;
-Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
-Query_Information.SQL.Add('FROM Сотрудники');
-Query_Information.SQL.Add('WHERE Фамилия =:a;');
-Query_Information.Parameters.ParamByName('a').Value:=IsFam.Text;
-Query_Information.open;
-IsImya.Text:=DS2.DataSet.FindField('Имя').AsString;
-IsOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
-showmessage('Автозаполнение прошло успешно!');
+try
+if InFam.Text='%' then
+  if InImya.Text='%' then
+   if InOtch.Text='%' then
+    if IsFam.Text='%' then
+      if IsImya.Text='%' then
+        if IsOtch.Text='%' then
+          if Krinf.Text='%' then
+            if Zadacha.Text='%' then
+            begin
+            showmessage('Автозаполнение прошло успешно!');
+            TaskBook.Query_Information.Close;
+            TaskBook.Query_Information.sql.Clear;
+            TaskBook.Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
+            TaskBook.Query_Information.SQL.Add('FROM Сотрудники');
+            TaskBook.Query_Information.SQL.Add('WHERE Фамилия =:k;');
+            TaskBook.Query_Information.Parameters.ParamByName('k').Value:=InFam.Text;
+            TaskBook.Query_Information.open;
+            InImya.Text:=DS2.DataSet.FindField('Имя').AsString;
+            InOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
+            Query_Information.Close;
+            Query_Information.sql.Clear;
+            Query_Information.SQL.Add('SELECT ИД_сотр,Фамилия,Имя,Отчество');
+            Query_Information.SQL.Add('FROM Сотрудники');
+            Query_Information.SQL.Add('WHERE Фамилия =:a;');
+            Query_Information.Parameters.ParamByName('a').Value:=IsFam.Text;
+            Query_Information.open;
+            IsImya.Text:=DS2.DataSet.FindField('Имя').AsString;
+            IsOtch.Text:=DS2.DataSet.FindField('Отчество').AsString;
+            end
+except
+showmessage('Невозможно записать поручение.Проверьте введеные данные');
+end;
 end;
 
 procedure TTaskBook.DobavitClick(Sender: TObject);
 begin
-TaskBook.Query_TaskJournal.Close;
-Query_TaskJournal.SQL.clear;
-Query_TaskJournal.SQL.Add('INSERT INTO ЖП(ИФ,ИИ,ИО,КИ,З,ИФ1,ИИ1,ИО1)');
-Query_TaskJournal.SQL.Add('VALUES('''+InFam.Text+''','''+InImya.Text+''','''+InOtch.Text+''','''+KrInf.Text+''','''+Zadacha.Text+''','''+IsFam.Text+''','''+IsImya.text+''','''+IsOtch.Text+''');');
-Query_TaskJournal.ExecSQL;
-Query_TaskJournal.Close;
-Query_TaskJournal.SQL.Clear;
-Query_TaskJournal.SQL.Add('SELECT * FROM ЖП;');
-Query_TaskJournal.Open;
-showmessage('Поручение зарегистрировано!');
+try
+if InFam.Text='%' then
+  if InImya.Text='%' then
+   if InOtch.Text='%' then
+    if IsFam.Text='%' then
+      if IsImya.Text='%' then
+        if IsOtch.Text='%' then
+          if Krinf.Text='%' then
+            if Zadacha.Text='%' then
+            begin
+            TaskBook.Query_TaskJournal.Close;
+            Query_TaskJournal.SQL.clear;
+            Query_TaskJournal.SQL.Add('INSERT INTO ЖП(ИФ,ИИ,ИО,КИ,З,ИФ1,ИИ1,ИО1)');
+            Query_TaskJournal.SQL.Add('VALUES('''+InFam.Text+''','''+InImya.Text+''','''+InOtch.Text+''','''+KrInf.Text+''','''+Zadacha.Text+''','''+IsFam.Text+''','''+IsImya.text+''','''+IsOtch.Text+''');');
+            Query_TaskJournal.ExecSQL;
+            Query_TaskJournal.Close;
+            Query_TaskJournal.SQL.Clear;
+            Query_TaskJournal.SQL.Add('SELECT * FROM ЖП;');
+            Query_TaskJournal.Open;
+            showmessage('Поручение зарегистрировано!');
+            end
+except
+showmessage('Невозможно записать поручение.Проверьте введеные данные');
+end;
+
+
+
 end;
 
 procedure TTaskBook.FormClose(Sender: TObject; var Action: TCloseAction);
