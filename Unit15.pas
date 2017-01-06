@@ -46,20 +46,32 @@ uses Unit2;
 
 procedure TMethodicalCabinet.AddMaterialClick(Sender: TObject);
 begin
-Query_MethodicalCabinet.close;
-Query_MethodicalCabinet.SQL.Clear;
-Query_MethodicalCabinet.SQL.Add('INSERT INTO Методкабинет(Автор,Предмет,[Дата сдачи],Принял)');
-Query_MethodicalCabinet.SQL.Add('VALUES(:a1,:a2,:a3,:a4);');
-Query_MethodicalCabinet.Parameters.ParamByName('a1').Value:=Discipline.Text;
-Query_MethodicalCabinet.Parameters.ParamByName('a2').Value:=Teacher.Text;
-Query_MethodicalCabinet.Parameters.ParamByName('a3').Value:=Date.Text;
-Query_MethodicalCabinet.Parameters.ParamByName('a4').Value:=MenuChoice.username.Caption;
-Query_MethodicalCabinet.ExecSQL;
-Query_MethodicalCabinet.close;
-Query_MethodicalCabinet.SQL.Clear;
-Query_MethodicalCabinet.SQL.Add('SELECT *');
-Query_MethodicalCabinet.SQL.Add('FROM Методкабинет;');
-Query_MethodicalCabinet.open;
+if (Discipline.Text='') or (Teacher.Text='') or (Date.Text='') then
+showmessage('Обнаружены незаполненные поля')
+else
+begin
+  try
+  Query_MethodicalCabinet.close;
+  Query_MethodicalCabinet.SQL.Clear;
+  Query_MethodicalCabinet.SQL.Add('INSERT INTO Методкабинет(Автор,Предмет,[Дата сдачи],Принял)');
+  Query_MethodicalCabinet.SQL.Add('VALUES(:a2,:a1,:a3,:a4);');
+  Query_MethodicalCabinet.Parameters.ParamByName('a1').Value:=Discipline.Text;
+  Query_MethodicalCabinet.Parameters.ParamByName('a2').Value:=Teacher.Text;
+  Query_MethodicalCabinet.Parameters.ParamByName('a3').Value:=Date.Text;
+  Query_MethodicalCabinet.Parameters.ParamByName('a4').Value:=MenuChoice.username.Caption;
+  Query_MethodicalCabinet.ExecSQL;
+  Query_MethodicalCabinet.close;
+  Query_MethodicalCabinet.SQL.Clear;
+  Query_MethodicalCabinet.SQL.Add('SELECT *');
+  Query_MethodicalCabinet.SQL.Add('FROM Методкабинет;');
+  Query_MethodicalCabinet.open;
+  finally
+  Showmessage('Информация внесена!');
+  Discipline.Text:='';
+  Teacher.Text:='';
+  Date.Text:='';
+  end;
+  end;
 end;
 
 procedure TMethodicalCabinet.LoadingClick(Sender: TObject);

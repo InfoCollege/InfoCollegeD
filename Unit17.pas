@@ -53,18 +53,29 @@ end;
 
 procedure TRegistrationTask.RegistrTaskClick(Sender: TObject);
 begin
-Insert.Close;
-Insert.SQL.Clear;
-Insert.SQL.Add('SELECT * FROM Сотрудники WHERE Сокр_имя ='''+Name.Text+''';');
-Insert.Open;
-a:=Insert.Fields[0].Asinteger;
-Insert.Close;
-Insert.SQL.Clear;
-Insert.SQL.Add('INSERT INTO Приказ(Информация,ИД_сотрудника)');
-Insert.SQL.Add('VALUES('''+Info.text+''','+inttostr(a)+');');
-Insert.ExecSQL;
-Query_task.Close;
-Query_task.Open;
+if (Info.Text='')or (Name.Text='') then
+showmessage('Обнаружены незаполненные поля')
+  else
+  begin
+  try
+  Insert.Close;
+  Insert.SQL.Clear;
+  Insert.SQL.Add('SELECT * FROM Сотрудники WHERE Сокр_имя ='''+Name.Text+''';');
+  Insert.Open;
+  a:=Insert.Fields[0].Asinteger;
+  Insert.Close;
+  Insert.SQL.Clear;
+  Insert.SQL.Add('INSERT INTO Приказ(Информация,ИД_сотрудника)');
+  Insert.SQL.Add('VALUES(:a,'+inttostr(a)+');');
+  Insert.Parameters.ParamByName('a').Value:=Info.Text;
+  Insert.ExecSQL;
+  Query_task.Close;
+  Query_task.Open;
+  finally
+  showmessage('Приказ зарегистрирован!');
+  Info.Text:='';
+  end;
+  end;
 end;
 
 end.

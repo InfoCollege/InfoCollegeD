@@ -44,18 +44,30 @@ uses Unit2;
 
 procedure TRegistInfo.RegistrationInfoClick(Sender: TObject);
 begin
-Insert_info.Close;
-Insert_info.SQL.Clear;
-Insert_info.SQL.Add('INSERT INTO ЖС(Фамилия,Имя,Отчество,Группа)');
-Insert_info.SQL.Add('VALUES (:a,:b,:c,:d);');
-Insert_info.Parameters.ParamByName('a').Value:=Surname.Text;
-Insert_info.Parameters.ParamByName('b').Value:=Name.Text;
-Insert_info.Parameters.ParamByName('c').Value:=MiddleName.Text;
-Insert_info.Parameters.ParamByName('d').Value:=Group.Text;
-Insert_info.ExecSQL;
-Query_RegistInfo.Close;
-Query_RegistInfo.open;
+if (Surname.Text='') OR (Name.Text='') OR (MiddleName.Text='') OR (Group.Text='')  then
+showmessage('Обнаружены незаполненные поля')
+  else
+  begin
+    try
+    Insert_info.Close;
+    Insert_info.SQL.Clear;
+    Insert_info.SQL.Add('INSERT INTO ЖС(Фамилия,Имя,Отчество,Группа)');
+    Insert_info.SQL.Add('VALUES (:a,:b,:c,:d);');
+    Insert_info.Parameters.ParamByName('a').Value:=Surname.Text;
+    Insert_info.Parameters.ParamByName('b').Value:=Name.Text;
+    Insert_info.Parameters.ParamByName('c').Value:=MiddleName.Text;
+    Insert_info.Parameters.ParamByName('d').Value:=Group.Text;
+    Insert_info.ExecSQL;
+    Query_RegistInfo.Close;
+    Query_RegistInfo.open;
+    Surname.Text:='';
+    Name.Text:='';
+    MiddleName.Text:='';
+    Group.Text:='';
+    finally
 
+    end;
+  end;
 end;
 
 procedure TRegistInfo.FormClose(Sender: TObject; var Action: TCloseAction);

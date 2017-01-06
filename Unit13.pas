@@ -41,24 +41,38 @@ uses Unit10, Unit2;
 
 procedure TTable.DobavitClick(Sender: TObject);
 begin
-Teacher.Query_Teacher.Close;
-Teacher.Query_Teacher.sql.Clear;
-Teacher.Query_Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
-Teacher.Query_Teacher.SQL.Add('FROM Преподаватели');
-Teacher.Query_Teacher.SQL.Add('WHERE Фамилия =:k;');
-Teacher.Query_Teacher.Parameters.ParamByName('k').Value:=Fam.Text;
-Teacher.Query_Teacher.open;
-a:=Teacher.DS.DataSet.FindField('ИД').AsInteger;
-Teacher.Query_Teacher.Close;
-Teacher.Query_Teacher.sql.Clear;
-Teacher.Query_Teacher.SQL.Add('INSERT INTO Табель');
-Teacher.Query_Teacher.SQL.Add('VALUES(:b,'+Period.Text+','+Time.Text+');');
-Teacher.Query_Teacher.Parameters.ParamByName('b').Value:=a;
-//showmessage(Form10.Teacher.SQL.Text);
-Teacher.Query_Teacher.execsql;
-Table.Tabel.Close;
-Table.Tabel.Open;
-showmessage('Запись добавлена!');
+if (Fam.Text='') or (Period.Text='') or (Time.Text='') then
+showmessage('Обнаружены незаполенные поля')
+else
+  begin
+  try
+  Teacher.Query_Teacher.Close;
+  Teacher.Query_Teacher.sql.Clear;
+  Teacher.Query_Teacher.SQL.Add('SELECT ИД,Фамилия,Имя,Отчество');
+  Teacher.Query_Teacher.SQL.Add('FROM Преподаватели');
+  Teacher.Query_Teacher.SQL.Add('WHERE Фамилия =:k;');
+  Teacher.Query_Teacher.Parameters.ParamByName('k').Value:=Fam.Text;
+  Teacher.Query_Teacher.open;
+  a:=Teacher.DS.DataSet.FindField('ИД').AsInteger;
+  Teacher.Query_Teacher.Close;
+  Teacher.Query_Teacher.sql.Clear;
+  Teacher.Query_Teacher.SQL.Add('INSERT INTO Табель(ИД,Период,Отработано)');
+  Teacher.Query_Teacher.SQL.Add('VALUES(:b,:c,:d);');
+  Teacher.Query_Teacher.Parameters.ParamByName('b').Value:=a;
+  Teacher.Query_Teacher.Parameters.ParamByName('c').Value:=Period.Text;
+  Teacher.Query_Teacher.Parameters.ParamByName('d').Value:=Time.Text;
+  //showmessage(Form10.Teacher.SQL.Text);
+  Teacher.Query_Teacher.execsql;
+  Table.Tabel.Close;
+  Table.Tabel.Open;
+
+  finally
+  showmessage('Запись добавлена!');
+  Fam.Text:='';
+  Period.Text:='';
+  Time.Text:='';
+  end;
+  end;
 end;
 
 procedure TTable.FormClose(Sender: TObject; var Action: TCloseAction);

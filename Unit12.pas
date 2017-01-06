@@ -82,14 +82,31 @@ end;
 
 procedure TJornalReplace.InsertTabClick(Sender: TObject);
 begin
-InsertJZ.Close;
-InsertJZ.SQL.Clear;
-InsertJZ.SQL.Add('INSERT INTO ЖЗ(ФО,ИО,ОО,ФЗ,ИЗ,ОЗ,Дисциплина,[Кол-во часов])');
-InsertJZ.SQL.Add('VALUES('''+FO.Text+''','''+IO.Text+''','''+OO.Text+''','''+FZ.text+''','''+IZ.text+''','''+OZ.Text+''','''+Disp.Text+''','''+KCH.Text+''');');
-//showmessage(InsertJZ.SQL.Text);
-InsertJZ.ExecSQL;
-JournalReplacment.Query_Journalreplacement.Close;
-JournalReplacment.Query_Journalreplacement.open;
+if (FO.Text='') or (IO.Text='') or (OO.Text='') or (FZ.Text='') or (IZ.Text='') or (OZ.Text='') or (Disp.Text='') or (KCH.Text='') then
+showmessage('Обнаружены незаполенные поля')
+else
+  begin
+  try
+  InsertJZ.Close;
+  InsertJZ.SQL.Clear;
+  InsertJZ.SQL.Add('INSERT INTO ЖЗ(ФО,ИО,ОО,ФЗ,ИЗ,ОЗ,Дисциплина,[Кол-во часов])');
+  InsertJZ.SQL.Add('VALUES('''+FO.Text+''','''+IO.Text+''','''+OO.Text+''','''+FZ.text+''','''+IZ.text+''','''+OZ.Text+''','''+Disp.Text+''','''+KCH.Text+''');');
+  //showmessage(InsertJZ.SQL.Text);
+  InsertJZ.ExecSQL;
+  JournalReplacment.Query_Journalreplacement.Close;
+  JournalReplacment.Query_Journalreplacement.open;
+  finally
+  showmessage('Информация зарегистрирована');
+  FO.Text:='';
+  IO.Text:='';
+  OO.Text:='';
+  FZ.Text:='';
+  IZ.Text:='';
+  OZ.Text:='';
+  Disp.Text:='';
+  KCH.Text:='';
+  end;
+  end;
 end;
 
 end.
