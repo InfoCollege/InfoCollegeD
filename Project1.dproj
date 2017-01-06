@@ -137,11 +137,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit12.pas">
-            <Form>Form12</Form>
+            <Form>JornalReplace</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit13.pas">
-            <Form>Form13</Form>
+            <Form>Table</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit14.pas">
@@ -156,9 +156,8 @@
             <Form>RegistInfo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Методический кабинет\Unit17.pas">
+        <DCCReference Include="Unit17.pas">
             <Form>RegistrationTask</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>

@@ -35,7 +35,7 @@ uses Unit12;
 procedure TJournalReplacment.AddClick(Sender: TObject);
 begin
 JournalReplacment.hide;
-Form12.Show;
+JornalReplace.Show;
 end;
 
 end.

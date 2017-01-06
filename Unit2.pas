@@ -10,7 +10,6 @@ type
   TMenuChoice = class(TForm)
     L_Username: TLabel;
     username: TLabel;
-    Calendar: TMonthCalendar;
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     N3: TMenuItem;
@@ -34,6 +33,7 @@ type
     N20: TMenuItem;
     L_University: TLabel;
     Background: TImage;
+    Calendar: TMonthCalendar;
     procedure N7Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure N10Click(Sender: TObject);
@@ -49,6 +49,7 @@ type
     procedure N4Click(Sender: TObject);
     procedure N11Click(Sender: TObject);
     procedure N12Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +68,14 @@ procedure TMenuChoice.N7Click(Sender: TObject);
 begin
 MenuChoice.Hide;
 Information.show;
+end;
+
+procedure TMenuChoice.N8Click(Sender: TObject);
+begin
+MenuChoice.hide;
+MainForm.show;
+MainForm.Login.text:='';
+MainForm.Password.text:='';
 end;
 
 procedure TMenuChoice.N9Click(Sender: TObject);
@@ -120,7 +129,7 @@ end;
 procedure TMenuChoice.N16Click(Sender: TObject);
 begin
 MenuChoice.hide;
-Form13.show;
+Table.show;
 end;
 
 procedure TMenuChoice.N17Click(Sender: TObject);

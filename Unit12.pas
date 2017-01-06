@@ -8,8 +8,8 @@ uses
   Vcl.ExtCtrls, Data.DB, Data.Win.ADODB;
 
 type
-  TForm12 = class(TForm)
-    Image1: TImage;
+  TJornalReplace = class(TForm)
+    Background: TImage;
     L_University: TLabel;
     Label9: TLabel;
     FO: TEdit;
@@ -43,7 +43,7 @@ type
   end;
 
 var
-  Form12: TForm12;
+  JornalReplace: TJornalReplace;
 
 implementation
 
@@ -51,7 +51,7 @@ implementation
 
 uses Unit10, Unit11;
 
-procedure TForm12.AutoDClick(Sender: TObject);
+procedure TJornalReplace.AutoDClick(Sender: TObject);
 begin
 Teacher.Query_Teacher.close;
 Teacher.Query_Teacher.sql.Clear;
@@ -74,13 +74,13 @@ OZ.Text:=Teacher.DS.DataSet.FindField('Отчество').AsString;
 showmessage('Автозаполнение прошло успешно!');
 end;
 
-procedure TForm12.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TJornalReplace.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form12.Hide;
+JornalReplace.Hide;
 JournalReplacment.show;
 end;
 
-procedure TForm12.InsertTabClick(Sender: TObject);
+procedure TJornalReplace.InsertTabClick(Sender: TObject);
 begin
 InsertJZ.Close;
 InsertJZ.SQL.Clear;

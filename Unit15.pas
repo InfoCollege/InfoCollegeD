@@ -14,7 +14,7 @@ type
     T_methodicalcabinet: TDBGrid;
     Discipline: TEdit;
     L_Discipline: TLabel;
-    Label1: TLabel;
+    L_Teacher: TLabel;
     Teacher: TEdit;
     L_Date: TLabel;
     Date: TEdit;

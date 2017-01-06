@@ -14,7 +14,6 @@ type
     L_University: TLabel;
     L_Info1: TLabel;
     L_Info2: TLabel;
-    L_ProgramVersion: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

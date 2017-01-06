@@ -19,7 +19,6 @@ type
     Auth: TButton;
     DB: TADOConnection;
     Query_Auth: TADOQuery;
-    L_Version: TLabel;
     AuthDS1: TDataSource;
     INFO: TADOQuery;
     procedure AuthClick(Sender: TObject);
@@ -72,8 +71,8 @@ AdmissionCommittee.L_University.caption:=INFO.Fields[0].AsString;
 RegisterStudent.L_University.caption:=INFO.Fields[0].AsString;
 Teacher.L_University.caption:=INFO.Fields[0].AsString;
 JournalReplacment.L_University.caption:=INFO.Fields[0].AsString;
-Form12.L_University.caption:=INFO.Fields[0].AsString;
-Form13.L_University.caption:=INFO.Fields[0].AsString;
+JornalReplace.L_University.caption:=INFO.Fields[0].AsString;
+Table.L_University.caption:=INFO.Fields[0].AsString;
 TaskBook.L_University.caption:=INFO.Fields[0].AsString;
 MethodicalCabinet.L_University.caption:=INFO.Fields[0].AsString;
 RegistInfo.L_University.caption:=INFO.Fields[0].AsString;

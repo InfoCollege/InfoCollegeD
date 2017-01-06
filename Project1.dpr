@@ -13,8 +13,8 @@ uses
   Unit9 in 'Unit9.pas' {workload},
   Unit10 in 'Unit10.pas' {Teacher},
   Unit11 in 'Unit11.pas' {JournalReplacment},
-  Unit12 in 'Unit12.pas' {Form12},
-  Unit13 in 'Unit13.pas' {Form13},
+  Unit12 in 'Unit12.pas' {JornalReplace},
+  Unit13 in 'Unit13.pas' {Table},
   Unit14 in 'Unit14.pas' {TaskBook},
   Unit15 in 'Unit15.pas' {MethodicalCabinet},
   Unit16 in 'Unit16.pas' {RegistInfo},
@@ -36,8 +36,8 @@ begin
   Application.CreateForm(Tworkload, workload);
   Application.CreateForm(TTeacher, Teacher);
   Application.CreateForm(TJournalReplacment, JournalReplacment);
-  Application.CreateForm(TForm12, Form12);
-  Application.CreateForm(TForm13, Form13);
+  Application.CreateForm(TJornalReplace, JornalReplace);
+  Application.CreateForm(TTable, Table);
   Application.CreateForm(TTaskBook, TaskBook);
   Application.CreateForm(TMethodicalCabinet, MethodicalCabinet);
   Application.CreateForm(TRegistInfo, RegistInfo);

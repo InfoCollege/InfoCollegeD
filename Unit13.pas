@@ -8,8 +8,8 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.jpeg, Vcl.ExtCtrls;
 
 type
-  TForm13 = class(TForm)
-    Image1: TImage;
+  TTable = class(TForm)
+    Background: TImage;
     L_University: TLabel;
     Label1: TLabel;
     DBGrid1: TDBGrid;
@@ -31,7 +31,7 @@ type
   end;
 
 var
-  Form13: TForm13;
+  Table: TTable;
    a:integer;
 implementation
 
@@ -39,7 +39,7 @@ implementation
 
 uses Unit10, Unit2;
 
-procedure TForm13.DobavitClick(Sender: TObject);
+procedure TTable.DobavitClick(Sender: TObject);
 begin
 Teacher.Query_Teacher.Close;
 Teacher.Query_Teacher.sql.Clear;
@@ -56,14 +56,14 @@ Teacher.Query_Teacher.SQL.Add('VALUES(:b,'+Period.Text+','+Time.Text+');');
 Teacher.Query_Teacher.Parameters.ParamByName('b').Value:=a;
 //showmessage(Form10.Teacher.SQL.Text);
 Teacher.Query_Teacher.execsql;
-Form13.Tabel.Close;
-Form13.Tabel.Open;
+Table.Tabel.Close;
+Table.Tabel.Open;
 showmessage('Запись добавлена!');
 end;
 
-procedure TForm13.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TTable.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Form13.Hide;
+Table.Hide;
 MenuChoice.show;
 end;
 
