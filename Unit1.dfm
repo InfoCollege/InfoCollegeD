@@ -15,6 +15,7 @@ object MainForm: TMainForm
   OldCreateOrder = False
   Position = poDesktopCenter
   OnActivate = FormActivate
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object Background: TImage

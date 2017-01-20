@@ -23,6 +23,7 @@ type
     INFO: TADOQuery;
     procedure AuthClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -77,6 +78,11 @@ TaskBook.L_University.caption:=INFO.Fields[0].AsString;
 MethodicalCabinet.L_University.caption:=INFO.Fields[0].AsString;
 RegistInfo.L_University.caption:=INFO.Fields[0].AsString;
 RegistrationTask.L_University.caption:=INFO.Fields[0].AsString;
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Application.Terminate;
 end;
 
 end.
